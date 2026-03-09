@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masáže Zdeňka</title>
+    <meta
+      name="description"
+      content="Masáže, baňkování a tejpování. Jemný, moderní web pro studio Zdeňky Mahdalové."
+    />
+    <meta name="theme-color" content="#163b33" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <div class="noise-layer" aria-hidden="true"></div>
+    <div class="cursor-aura" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <a class="brand-mini" href="#hero" aria-label="Masáže Zdeňka">
+        <img src="logo-zdenka-transparent3.png" alt="Logo Masáže Zdeňka" />
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Otevřít menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Hlavní navigace">
+        <a href="#omne">O mně</a>
+        <a href="#cenik">Ceník</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="nav-cta" href="tel:+420731318636">Objednat se</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section" id="hero">
+        <div class="hero-pattern" aria-hidden="true"></div>
+        <div class="hero-inner container">
+          <p class="hero-topline reveal">MASÁŽE • BAŇKOVÁNÍ • TEJPOVÁNÍ</p>
+
+          <div class="logo-stage reveal reveal-delay-1" data-tilt>
+            <div class="logo-halo"></div>
+            <div class="logo-shell">
+              <img
+                class="hero-logo"
+                src="logo-zdenka-transparent3.png"
+                alt="Logo Masáže Zdeňka"
+              />
+            </div>
+          </div>
+
+          <div class="hero-copy reveal reveal-delay-2">
+            <h1>Masáže Zdeňka</h1>
+            <p class="hero-subtitle">
+              Jemná péče, zkušená ruka a prostor, kde může tělo zpomalit, uvolnit se a znovu se nadechnout.
+            </p>
+          </div>
+
+          <div class="hero-actions reveal reveal-delay-3">
+            <a class="btn btn-primary magnetic" href="tel:+420731318636">Objednat se telefonicky</a>
+            <a class="btn btn-secondary magnetic" href="mailto:masazetep@gmail.com">Napsat e-mail</a>
+          </div>
+
+          <div class="hero-meta reveal reveal-delay-4">
+            <div class="meta-chip">Provoz dle objednávek</div>
+            <div class="meta-chip">Velký Ořechov 208</div>
+            <div class="meta-chip">Praxe od roku 2017</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="omne section container" id="omne">
+        <div class="section-heading reveal">
+          <span class="eyebrow">O mně</span>
+          <h2>Příběh, který začal zvídavostí a přerostl v poslání</h2>
+        </div>
+
+        <div class="about-grid">
+          <article class="glass-card about-story reveal reveal-delay-1">
+            <p>
+              Jmenuji se Zdeňka a masážím se věnuji od roku 2017. První krok přišel nenápadně — jeden kurz, který měl být jen zajímavou zkušeností. Místo toho otevřel cestu, která se postupně rozrostla o tejpování, masáže, trigger point, Dornovu metodu, baňkování, relaxační terapii plosky, terapii zvukem i lymfatické masáže.
+            </p>
+            <p>
+              Dnes mám vlastní studio a dělám naplno to, co mi dává smysl: pomáhat lidem cítit se ve vlastním těle lépe, lehčeji a s větší úlevou.
+            </p>
+          </article>
+
+          <aside class="glass-card about-highlights reveal reveal-delay-2">
+            <div class="highlight-item">
+              <strong>2017</strong>
+              <span>začátek cesty a první kurz tejpování</span>
+            </div>
+            <div class="highlight-item">
+              <strong>2018–2023</strong>
+              <span>masáže, Dornova metoda, baňkování, ploska, zvuk, lymfa i další vzdělávání</span>
+            </div>
+            <div class="highlight-item">
+              <strong>2026</strong>
+              <span>otevření vlastního studia a nová kapitola</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="cenik section container" id="cenik">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Ceník</span>
+          <h2>Přehled služeb a cen</h2>
+        </div>
+
+        <div class="price-layout">
+          <div class="glass-card price-copy reveal reveal-delay-1">
+            <p>
+              Ceník je součástí vizitky přímo jako obrázek, aby zůstal přesně v podobě, jakou sis navrhla. Na mobilu i desktopu jde rozkliknout do zvětšeného náhledu.
+            </p>
+            <div class="price-pills">
+              <span>Masáže</span>
+              <span>Baňkování</span>
+              <span>Tejpování</span>
+            </div>
+            <div class="price-actions">
+              <a class="btn btn-primary magnetic" href="tel:+420731318636">Domluvit termín</a>
+              <button class="btn btn-secondary" type="button" data-open-modal>Zvětšit ceník</button>
+            </div>
+          </div>
+
+          <button class="price-preview reveal reveal-delay-2" type="button" data-open-modal aria-label="Otevřít ceník ve větším náhledu">
+            <img src="cenik-zdenka.png" alt="Ceník služeb Masáže Zdeňka" />
+          </button>
+        </div>
+      </section>
+
+      <section class="kontakt section container" id="kontakt">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Kontakt</span>
+          <h2>Objednání jednoduše a bez formulářů</h2>
+        </div>
+
+        <div class="contact-grid">
+          <a class="glass-card contact-card magnetic reveal reveal-delay-1" href="tel:+420731318636">
+            <span class="contact-label">Telefon</span>
+            <strong>+420 731 318 636</strong>
+            <span>Zavolejte a domluvíme termín.</span>
+          </a>
+          <a class="glass-card contact-card magnetic reveal reveal-delay-2" href="mailto:masazetep@gmail.com">
+            <span class="contact-label">E-mail</span>
+            <strong>masazetep@gmail.com</strong>
+            <span>Napište stručně, o co máte zájem.</span>
+          </a>
+          <div class="glass-card contact-card reveal reveal-delay-3">
+            <span class="contact-label">Studio</span>
+            <strong>Velký Ořechov 208</strong>
+            <span>Provozní doba dle objednávek.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <p>Masáže Zdeňka • péče s citem • <a href="tel:+420731318636">+420 731 318 636</a></p>
+    </footer>
+
+    <div class="modal" id="price-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="price-modal-title">
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-panel">
+        <button class="modal-close" type="button" data-close-modal aria-label="Zavřít náhled">×</button>
+        <h3 id="price-modal-title">Ceník služeb</h3>
+        <img src="cenik-zdenka.png" alt="Ceník služeb Masáže Zdeňka ve zvětšeném náhledu" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
