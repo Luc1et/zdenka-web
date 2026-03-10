@@ -179,10 +179,10 @@ body.pointer-ready .cursor-aura {
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  width: 100%;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .header-bar {
@@ -192,6 +192,43 @@ body.pointer-ready .cursor-aura {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 10px 28px rgba(28, 36, 33, 0.08);
+}
+
+.ornament-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+
+  background-image: url("img/lista-zdenka-trim.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+
+  pointer-events: none;
+  z-index: 15;
+}
+
+.ornament-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+
+  width: 100%;
+  height: 120px;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.45) 40%,
+    rgba(255, 255, 255, 0.15) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .header-shell {
