@@ -23,49 +23,65 @@
     <div class="cursor-aura" aria-hidden="true"></div>
 
     <header class="site-header" id="top">
-      <div class="header-ornament" aria-hidden="true">
-        <img src="lista-zdenka.png" alt="" />
+      <div class="header-bar">
+        <div class="header-shell">
+          <a class="brand" href="#hero" aria-label="Masáže Zdeňka Mahdalová">
+            <img
+              src="img/logo-zdenka-removebg-preview.png"
+              alt="Logo Masáže Zdeňka"
+            />
+            <span>
+              <strong>Zdeňka Mahdalová</strong>
+              <small>Masáže • baňkování • tejpování</small>
+            </span>
+          </a>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">Otevřít menu</span>
+          </button>
+
+          <nav class="site-nav" id="site-nav" aria-label="Hlavní navigace">
+            <a href="#nabidka">Nabídka masáží</a>
+            <a href="#prostredi">Jak to u mě vypadá</a>
+            <a href="#faq">Časté dotazy</a>
+            <a href="#kontakt">Kontakt</a>
+            <a class="nav-cta" href="tel:+420731318636">Objednat se</a>
+          </nav>
+        </div>
       </div>
-      <div class="header-shell">
-        <a class="brand" href="#hero" aria-label="Masáže Zdeňka Mahdalová">
-          <img src="img/logo-zdenka-transparent3.png" alt="Logo Masáže Zdeňka" />
-          <span>
-            <strong>Zdeňka Mahdalová</strong>
-            <small>Masáže • baňkování • tejpování</small>
-          </span>
-        </a>
 
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span class="sr-only">Otevřít menu</span>
-        </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="Hlavní navigace">
-          <a href="#nabidka">Nabídka masáží</a>
-          <a href="#prostredi">Jak to u mě vypadá</a>
-          <a href="#faq">Časté dotazy</a>
-          <a href="#kontakt">Kontakt</a>
-          <a class="nav-cta" href="tel:+420731318636">Objednat se</a>
-        </nav>
+      <div class="header-divider" aria-hidden="true">
+        <img src="img/lista-zdenka.png" alt="" />
       </div>
     </header>
-
     <main>
       <section class="hero section" id="hero">
         <div class="hero-backdrop" aria-hidden="true"></div>
         <div class="container hero-inner">
           <div class="hero-copy reveal">
-            <p class="hero-topline">Velký Ořechov 208 • provoz dle objednávek</p>
+            <p class="hero-topline">
+              Velký Ořechov 208 • provoz dle objednávek
+            </p>
             <h1>Jemná péče pro tělo, které potřebuje ulevit.</h1>
             <p class="hero-subtitle">
-              Masáže, baňkování a tejpování v klidném prostředí, s respektem k tomu,
-              co vaše tělo právě potřebuje.
+              Masáže, baňkování a tejpování v klidném prostředí, s respektem k
+              tomu, co vaše tělo právě potřebuje.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary magnetic" href="tel:+420731318636">Objednat se telefonicky</a>
-              <a class="btn btn-secondary magnetic" href="#nabidka">Podívat se na služby</a>
+              <a class="btn btn-primary magnetic" href="tel:+420731318636"
+                >Objednat se telefonicky</a
+              >
+              <a class="btn btn-secondary magnetic" href="#nabidka"
+                >Podívat se na služby</a
+              >
             </div>
             <div class="hero-chips">
               <span>Praxe od roku 2017</span>
@@ -76,7 +92,11 @@
 
           <div class="hero-visual reveal reveal-delay-1" data-tilt>
             <div class="hero-logo-wrap">
-              <img src="img/logo-zdenka-transparent3.png" alt="Logo Zdeňky Mahdalové" class="hero-logo" />
+              <img
+                src="img/logo-zdenka-transparent3.png"
+                alt="Logo Zdeňky Mahdalové"
+                class="hero-logo"
+              />
             </div>
           </div>
         </div>
@@ -87,18 +107,21 @@
           <span class="eyebrow">Nabídka masáží</span>
           <h2>Co pro vás mohu udělat</h2>
           <p>
-            Každá návštěva začíná krátkou domluvou. Společně vybereme péči, která dává
-            smysl právě vám.
+            Každá návštěva začíná krátkou domluvou. Společně vybereme péči,
+            která dává smysl právě vám.
           </p>
         </div>
 
         <div class="services-grid">
-          <article class="service-card glass-card reveal reveal-delay-1" id="sluzba-kombinace">
+          <article
+            class="service-card glass-card reveal reveal-delay-1"
+            id="sluzba-kombinace"
+          >
             <span class="service-meta">90 nebo 60 minut</span>
             <h3>Masáž s baňkováním</h3>
             <p>
-              Spojení klasické masáže a baňkování pro hlubší uvolnění zad, šíje a
-              přetížených míst. Vhodné tam, kde běžná masáž nestačí.
+              Spojení klasické masáže a baňkování pro hlubší uvolnění zad, šíje
+              a přetížených míst. Vhodné tam, kde běžná masáž nestačí.
             </p>
             <div class="service-footer">
               <small>Od 500 Kč</small>
@@ -106,12 +129,15 @@
             </div>
           </article>
 
-          <article class="service-card glass-card reveal reveal-delay-2" id="sluzba-zada">
+          <article
+            class="service-card glass-card reveal reveal-delay-2"
+            id="sluzba-zada"
+          >
             <span class="service-meta">30 minut</span>
             <h3>Masáž zad a šíje</h3>
             <p>
-              Kratší, cílená péče pro unavená záda a ztuhlý krk. Ideální, když chcete
-              rychle ulevit od napětí z práce nebo dlouhého sezení.
+              Kratší, cílená péče pro unavená záda a ztuhlý krk. Ideální, když
+              chcete rychle ulevit od napětí z práce nebo dlouhého sezení.
             </p>
             <div class="service-footer">
               <small>300 Kč</small>
@@ -119,12 +145,15 @@
             </div>
           </article>
 
-          <article class="service-card glass-card reveal reveal-delay-3" id="sluzba-oblicej">
+          <article
+            class="service-card glass-card reveal reveal-delay-3"
+            id="sluzba-oblicej"
+          >
             <span class="service-meta">30 minut</span>
             <h3>Masáž obličeje a hlavy</h3>
             <p>
-              Jemná relaxační péče pro uvolnění svalového napětí, zklidnění a chvíli,
-              kdy můžete opravdu vypnout.
+              Jemná relaxační péče pro uvolnění svalového napětí, zklidnění a
+              chvíli, kdy můžete opravdu vypnout.
             </p>
             <div class="service-footer">
               <small>350 Kč</small>
@@ -132,12 +161,16 @@
             </div>
           </article>
 
-          <article class="service-card glass-card reveal reveal-delay-1" id="sluzba-castecna">
+          <article
+            class="service-card glass-card reveal reveal-delay-1"
+            id="sluzba-castecna"
+          >
             <span class="service-meta">45 minut</span>
             <h3>Částečná masáž</h3>
             <p>
-              Péče zaměřená jen na vybranou oblast — ruce, nohy nebo plosky. Dobrá
-              volba, když nepotřebujete celkovou masáž, ale konkrétní úlevu.
+              Péče zaměřená jen na vybranou oblast — ruce, nohy nebo plosky.
+              Dobrá volba, když nepotřebujete celkovou masáž, ale konkrétní
+              úlevu.
             </p>
             <div class="service-footer">
               <small>450 Kč</small>
@@ -145,12 +178,16 @@
             </div>
           </article>
 
-          <article class="service-card glass-card reveal reveal-delay-2" id="sluzba-klasicka">
+          <article
+            class="service-card glass-card reveal reveal-delay-2"
+            id="sluzba-klasicka"
+          >
             <span class="service-meta">90 minut</span>
             <h3>Celková klasická masáž</h3>
             <p>
-              Delší regenerace pro tělo, které si zaslouží víc času. Vhodná při únavě,
-              přetížení i ve chvíli, kdy si chcete dopřát klidnější tempo.
+              Delší regenerace pro tělo, které si zaslouží víc času. Vhodná při
+              únavě, přetížení i ve chvíli, kdy si chcete dopřát klidnější
+              tempo.
             </p>
             <div class="service-footer">
               <small>900 Kč</small>
@@ -158,12 +195,16 @@
             </div>
           </article>
 
-          <article class="service-card glass-card reveal reveal-delay-3" id="sluzba-doplnkove">
+          <article
+            class="service-card glass-card reveal reveal-delay-3"
+            id="sluzba-doplnkove"
+          >
             <span class="service-meta">Doplňkové služby</span>
             <h3>Tejpování, svíčka a parafín</h3>
             <p>
-              Podle potřeby je možné péči doplnit tejpováním, svíčkou nebo parafínem na
-              ruce či nohy. Ráda poradím, co má ve vašem případě smysl.
+              Podle potřeby je možné péči doplnit tejpováním, svíčkou nebo
+              parafínem na ruce či nohy. Ráda poradím, co má ve vašem případě
+              smysl.
             </p>
             <div class="service-footer">
               <small>Individuálně dle výběru</small>
@@ -179,20 +220,26 @@
             <span class="eyebrow">Jak to u mě vypadá</span>
             <h2>Klidné místo, kde se nemusí spěchat</h2>
             <p>
-              Ve studiu ve Velkém Ořechově je prostor pro zklidnění, krátkou domluvu i
-              péči, která se přizpůsobí tomu, s čím přicházíte. Nečekejte nic strojeného
-              — spíš příjemné, komorní prostředí a lidský přístup.
+              Ve studiu ve Velkém Ořechově je prostor pro zklidnění, krátkou
+              domluvu i péči, která se přizpůsobí tomu, s čím přicházíte.
+              Nečekejte nic strojeného — spíš příjemné, komorní prostředí a
+              lidský přístup.
             </p>
             <p>
-              Fotky prostoru sem mohou časem přibýt. Už teď ale web ukazuje atmosféru,
-              ve které Zdeňka pracuje: jemně, s citem a bez zbytečného spěchu.
+              Fotky prostoru sem mohou časem přibýt. Už teď ale web ukazuje
+              atmosféru, ve které Zdeňka pracuje: jemně, s citem a bez
+              zbytečného spěchu.
             </p>
           </div>
 
           <div class="ambience-visual reveal reveal-delay-2">
             <div class="ambience-panel glass-card">
               <div class="ambience-panel-bg" aria-hidden="true"></div>
-              <img class="ambience-logo" src="img/logo-zdenka-removebg-preview.png" alt="Značka Zdeňky" />
+              <img
+                class="ambience-logo"
+                src="img/logo-zdenka-removebg-preview.png"
+                alt="Značka Zdeňky"
+              />
               <div class="ambience-note">
                 <strong>Komorní studio</strong>
                 <span>Velký Ořechov 208 • dle objednávek</span>
@@ -211,14 +258,15 @@
 
           <article class="glass-card about-story reveal reveal-delay-1">
             <p>
-              Zdeňka se masážím věnuje od roku 2017. Postupně prošla dalšími kurzy a do
-              své práce přirozeně zapojila i tejpování, baňkování, lymfatické techniky,
-              terapii plosky nebo doplňkové relaxační postupy.
+              Zdeňka se masážím věnuje od roku 2017. Postupně prošla dalšími
+              kurzy a do své práce přirozeně zapojila i tejpování, baňkování,
+              lymfatické techniky, terapii plosky nebo doplňkové relaxační
+              postupy.
             </p>
             <p>
-              V roce 2026 otevřela vlastní studio, aby mohla naplno dělat to, co jí dává
-              smysl: pomáhat lidem cítit se ve vlastním těle lépe, lehčeji a s větší
-              úlevou.
+              V roce 2026 otevřela vlastní studio, aby mohla naplno dělat to, co
+              jí dává smysl: pomáhat lidem cítit se ve vlastním těle lépe,
+              lehčeji a s větší úlevou.
             </p>
           </article>
 
@@ -229,7 +277,10 @@
             </div>
             <div class="fact-card glass-card">
               <strong>2018–2023</strong>
-              <span>masáže, baňkování, Dornova metoda, lymfa i další vzdělávání</span>
+              <span
+                >masáže, baňkování, Dornova metoda, lymfa i další
+                vzdělávání</span
+              >
             </div>
             <div class="fact-card glass-card">
               <strong>2026</strong>
@@ -250,32 +301,34 @@
             <details class="faq-item">
               <summary>Jak se objednat?</summary>
               <p>
-                Nejrychlejší je zavolat na <a href="tel:+420731318636">+420 731 318 636</a>.
-                Objednat se můžete také e-mailem a termín spolu doladíme.
+                Nejrychlejší je zavolat na
+                <a href="tel:+420731318636">+420 731 318 636</a>. Objednat se
+                můžete také e-mailem a termín spolu doladíme.
               </p>
             </details>
 
             <details class="faq-item">
               <summary>Jak dlouho masáž trvá?</summary>
               <p>
-                Podle vybrané služby přibližně 30 až 90 minut. Předem se vždy domluvíme,
-                co vám bude dávat největší smysl.
+                Podle vybrané služby přibližně 30 až 90 minut. Předem se vždy
+                domluvíme, co vám bude dávat největší smysl.
               </p>
             </details>
 
             <details class="faq-item">
               <summary>Co když si nejsem jistá, co vybrat?</summary>
               <p>
-                To je úplně v pořádku. Stačí se ozvat — Zdeňka s vámi krátce probere, co
-                vás trápí nebo co od návštěvy čekáte, a doporučí vhodnou variantu.
+                To je úplně v pořádku. Stačí se ozvat — Zdeňka s vámi krátce
+                probere, co vás trápí nebo co od návštěvy čekáte, a doporučí
+                vhodnou variantu.
               </p>
             </details>
 
             <details class="faq-item">
               <summary>Kde studio najdu?</summary>
               <p>
-                Studio se nachází ve <strong>Velkém Ořechově 208</strong>. Provoz probíhá
-                dle objednávek.
+                Studio se nachází ve <strong>Velkém Ořechově 208</strong>.
+                Provoz probíhá dle objednávek.
               </p>
             </details>
 
@@ -283,7 +336,8 @@
               <summary>Jak probíhá první návštěva?</summary>
               <p>
                 Nejprve krátká domluva, potom samotná péče podle toho, co právě
-                potřebujete. Cílem není jet podle šablony, ale vybrat smysluplnou péči.
+                potřebujete. Cílem není jet podle šablony, ale vybrat
+                smysluplnou péči.
               </p>
             </details>
           </div>
@@ -297,13 +351,19 @@
         </div>
 
         <div class="contact-grid">
-          <a class="glass-card contact-card magnetic reveal reveal-delay-1" href="tel:+420731318636">
+          <a
+            class="glass-card contact-card magnetic reveal reveal-delay-1"
+            href="tel:+420731318636"
+          >
             <span class="contact-label">Telefon</span>
             <strong>+420 731 318 636</strong>
             <span>Zavolejte a domluvíme termín.</span>
           </a>
 
-          <a class="glass-card contact-card magnetic reveal reveal-delay-2" href="mailto:masazetep@gmail.com">
+          <a
+            class="glass-card contact-card magnetic reveal reveal-delay-2"
+            href="mailto:masazetep@gmail.com"
+          >
             <span class="contact-label">E-mail</span>
             <strong>masazetep@gmail.com</strong>
             <span>Napište stručně, o jakou péči máte zájem.</span>
@@ -317,7 +377,9 @@
         </div>
 
         <div class="contact-cta reveal reveal-delay-4">
-          <a class="btn btn-primary magnetic" href="tel:+420731318636">Chci si domluvit termín</a>
+          <a class="btn btn-primary magnetic" href="tel:+420731318636"
+            >Chci si domluvit termín</a
+          >
         </div>
       </section>
     </main>
