@@ -1,21 +1,23 @@
 const body = document.body;
-const header = document.querySelector('.site-header');
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.site-nav');
-const navLinks = document.querySelectorAll('.site-nav a');
-const revealItems = document.querySelectorAll('.reveal');
-const modal = document.getElementById('price-modal');
-const openModalButtons = document.querySelectorAll('[data-open-modal]');
-const closeModalButtons = document.querySelectorAll('[data-close-modal]');
-const aura = document.querySelector('.cursor-aura');
-const magneticItems = document.querySelectorAll('.magnetic');
-const tiltItem = document.querySelector('[data-tilt]');
+const header = document.querySelector(".site-header");
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelectorAll(".site-nav a");
+const revealItems = document.querySelectorAll(".reveal");
+const aura = document.querySelector(".cursor-aura");
+const magneticItems = document.querySelectorAll(".magnetic");
+const tiltItem = document.querySelector("[data-tilt]");
+
+const modal = document.getElementById("image-modal");
+const modalImage = document.getElementById("modal-image");
+const imageButtons = document.querySelectorAll("[data-open-image]");
+const closeModalButtons = document.querySelectorAll("[data-close-modal]");
+const serviceToggles = document.querySelectorAll(".service-toggle");
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
+        entry.target.classList.add("is-visible");
         revealObserver.unobserve(entry.target);
       }
     });
@@ -26,52 +28,69 @@ const revealObserver = new IntersectionObserver(
 revealItems.forEach((item) => revealObserver.observe(item));
 
 if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    header.classList.toggle('menu-open');
+  menuToggle.addEventListener("click", () => {
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!expanded));
+    header.classList.toggle("menu-open");
   });
 }
 
 navLinks.forEach((link) => {
-  link.addEventListener('click', () => {
-    header.classList.remove('menu-open');
-    menuToggle?.setAttribute('aria-expanded', 'false');
+  link.addEventListener("click", () => {
+    header.classList.remove("menu-open");
+    menuToggle?.setAttribute("aria-expanded", "false");
   });
 });
 
-function openModal() {
-  modal.classList.add('is-open');
-  modal.setAttribute('aria-hidden', 'false');
-  body.style.overflow = 'hidden';
+function openModal(src, alt = "") {
+  if (!modal || !modalImage) return;
+  modalImage.src = src;
+  modalImage.alt = alt;
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  body.style.overflow = "hidden";
 }
 
 function closeModal() {
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
-  body.style.overflow = '';
+  if (!modal || !modalImage) return;
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  body.style.overflow = "";
+  setTimeout(() => {
+    modalImage.src = "";
+    modalImage.alt = "";
+  }, 180);
 }
 
-openModalButtons.forEach((btn) => btn.addEventListener('click', openModal));
-closeModalButtons.forEach((btn) => btn.addEventListener('click', closeModal));
+imageButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const src = button.dataset.openImage;
+    const alt = button.dataset.imageAlt || "";
+    openModal(src, alt);
+  });
+});
 
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
+closeModalButtons.forEach((btn) => {
+  btn.addEventListener("click", closeModal);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
     closeModal();
   }
 });
 
-window.addEventListener('pointermove', (event) => {
-  body.classList.add('pointer-ready');
+window.addEventListener("pointermove", (event) => {
+  body.classList.add("pointer-ready");
   const x = `${(event.clientX / window.innerWidth) * 100}%`;
   const y = `${(event.clientY / window.innerHeight) * 100}%`;
-  document.documentElement.style.setProperty('--mx', x);
-  document.documentElement.style.setProperty('--my', y);
+  document.documentElement.style.setProperty("--mx", x);
+  document.documentElement.style.setProperty("--my", y);
 });
 
 magneticItems.forEach((item) => {
-  item.addEventListener('pointermove', (event) => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  item.addEventListener("pointermove", (event) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const rect = item.getBoundingClientRect();
     const x = event.clientX - rect.left - rect.width / 2;
@@ -80,14 +99,19 @@ magneticItems.forEach((item) => {
     item.style.transform = `translate(${x * 0.04}px, ${y * 0.04}px)`;
   });
 
-  item.addEventListener('pointerleave', () => {
-    item.style.transform = '';
+  item.addEventListener("pointerleave", () => {
+    item.style.transform = "";
   });
 });
 
 if (tiltItem) {
-  tiltItem.addEventListener('pointermove', (event) => {
-    if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  tiltItem.addEventListener("pointermove", (event) => {
+    if (
+      window.innerWidth < 768 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     const rect = tiltItem.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width;
@@ -98,18 +122,36 @@ if (tiltItem) {
     tiltItem.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
   });
 
-  tiltItem.addEventListener('pointerleave', () => {
-    tiltItem.style.transform = '';
+  tiltItem.addEventListener("pointerleave", () => {
+    tiltItem.style.transform = "";
   });
 }
 
-const heroPattern = document.querySelector('.hero-pattern');
+const heroPattern = document.querySelector(".hero-pattern");
 window.addEventListener(
-  'scroll',
+  "scroll",
   () => {
-    if (!heroPattern || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!heroPattern || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const offset = window.scrollY * 0.08;
     heroPattern.style.transform = `translate3d(0, ${offset}px, 0)`;
   },
   { passive: true }
 );
+
+serviceToggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const card = toggle.closest(".service-card");
+    const isOpen = card.classList.contains("is-open");
+
+    document.querySelectorAll(".service-card").forEach((item) => {
+      item.classList.remove("is-open");
+      const btn = item.querySelector(".service-toggle");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    });
+
+    if (!isOpen) {
+      card.classList.add("is-open");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+  });
+});

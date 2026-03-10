@@ -9,12 +9,14 @@
       content="Masáže, baňkování a tejpování. Jemný, moderní web pro studio Zdeňky Mahdalové."
     />
     <meta name="theme-color" content="#163b33" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -26,15 +28,23 @@
       <a class="brand-mini" href="#hero" aria-label="Masáže Zdeňka">
         <img src="img/logo-zdenka-transparent3.png" alt="Logo Masáže Zdeňka" />
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
         <span></span>
         <span></span>
         <span></span>
         <span class="sr-only">Otevřít menu</span>
       </button>
+
       <nav class="site-nav" id="site-nav" aria-label="Hlavní navigace">
         <a href="#omne">O mně</a>
-        <a href="#cenik">Ceník</a>
+        <a href="#certifikaty">Certifikáty</a>
+        <a href="#sluzby">Služby</a>
         <a href="#kontakt">Kontakt</a>
         <a class="nav-cta" href="tel:+420731318636">Objednat se</a>
       </nav>
@@ -43,6 +53,7 @@
     <main>
       <section class="hero section" id="hero">
         <div class="hero-pattern" aria-hidden="true"></div>
+
         <div class="hero-inner container">
           <p class="hero-topline reveal">MASÁŽE • BAŇKOVÁNÍ • TEJPOVÁNÍ</p>
 
@@ -60,13 +71,18 @@
           <div class="hero-copy reveal reveal-delay-2">
             <h1>Zdeňka Mahdalová</h1>
             <p class="hero-subtitle">
-              Jemná péče, zkušená ruka a prostor, kde může tělo zpomalit, uvolnit se a znovu se nadechnout.
+              Jemná péče, zkušená ruka a prostor, kde může tělo zpomalit,
+              uvolnit se a znovu se nadechnout.
             </p>
           </div>
 
           <div class="hero-actions reveal reveal-delay-3">
-            <a class="btn btn-primary magnetic" href="tel:+420731318636">Objednat se telefonicky</a>
-            <a class="btn btn-secondary magnetic" href="mailto:masazetep@gmail.com">Napsat e-mail</a>
+            <a class="btn btn-primary magnetic" href="tel:+420731318636">
+              Objednat se telefonicky
+            </a>
+            <a class="btn btn-secondary magnetic" href="mailto:masazetep@gmail.com">
+              Napsat e-mail
+            </a>
           </div>
 
           <div class="hero-meta reveal reveal-delay-4">
@@ -86,10 +102,16 @@
         <div class="about-grid">
           <article class="glass-card about-story reveal reveal-delay-1">
             <p>
-              Jmenuji se Zdeňka a masážím se věnuji od roku 2017. První krok přišel nenápadně — jeden kurz, který měl být jen zajímavou zkušeností. Místo toho otevřel cestu, která se postupně rozrostla o tejpování, masáže, trigger point, Dornovu metodu, baňkování, relaxační terapii plosky, terapii zvukem i lymfatické masáže.
+              Jmenuji se Zdeňka a masážím se věnuji od roku 2017. První krok
+              přišel nenápadně — jeden kurz, který měl být jen zajímavou
+              zkušeností. Místo toho otevřel cestu, která se postupně rozrostla
+              o tejpování, masáže, trigger point, Dornovu metodu, baňkování,
+              relaxační terapii plosky, terapii zvukem i lymfatické masáže.
             </p>
             <p>
-              Dnes mám vlastní studio a dělám naplno to, co mi dává smysl: pomáhat lidem cítit se ve vlastním těle lépe, lehčeji a s větší úlevou.
+              Dnes mám vlastní studio a dělám naplno to, co mi dává smysl:
+              pomáhat lidem cítit se ve vlastním těle lépe, lehčeji a s větší
+              úlevou.
             </p>
           </article>
 
@@ -110,31 +132,145 @@
         </div>
       </section>
 
-      <section class="cenik section container" id="cenik">
+      <section class="certifikaty section container" id="certifikaty">
         <div class="section-heading reveal">
-          <span class="eyebrow">Ceník</span>
-          <h2>Přehled služeb a cen</h2>
+          <span class="eyebrow">Certifikáty</span>
+          <h2>Certifikáty a odborné kurzy</h2>
+          <p class="section-lead">
+            Průběžné vzdělávání je pro mě přirozenou součástí práce. Vybrané
+            certifikáty najdete níže.
+          </p>
         </div>
 
-        <div class="price-layout">
-          <div class="glass-card price-copy reveal reveal-delay-1">
-            <p>
-              Ceník je součástí vizitky přímo jako obrázek, aby zůstal přesně v podobě, jakou sis navrhla. Na mobilu i desktopu jde rozkliknout do zvětšeného náhledu.
-            </p>
-            <div class="price-pills">
-              <span>Masáže</span>
-              <span>Baňkování</span>
-              <span>Tejpování</span>
-            </div>
-            <div class="price-actions">
-              <a class="btn btn-primary magnetic" href="tel:+420731318636">Domluvit termín</a>
-              <button class="btn btn-secondary" type="button" data-open-modal>Zvětšit ceník</button>
-            </div>
-          </div>
-
-          <button class="price-preview reveal reveal-delay-2" type="button" data-open-modal aria-label="Otevřít ceník ve větším náhledu">
-            <img src="cenik-zdenka.png" alt="Ceník služeb Masáže Zdeňka" />
+        <div class="cert-grid">
+          <button
+            class="cert-card glass-card reveal reveal-delay-1"
+            type="button"
+            data-open-image="img/certifikat-1.jpg"
+            data-image-alt="Certifikát 1"
+          >
+            <img src="img/certifikat-1.jpg" alt="Certifikát 1" />
+            <span>Certifikát 1</span>
           </button>
+
+          <button
+            class="cert-card glass-card reveal reveal-delay-2"
+            type="button"
+            data-open-image="img/certifikat-2.jpg"
+            data-image-alt="Certifikát 2"
+          >
+            <img src="img/certifikat-2.jpg" alt="Certifikát 2" />
+            <span>Certifikát 2</span>
+          </button>
+
+          <button
+            class="cert-card glass-card reveal reveal-delay-3"
+            type="button"
+            data-open-image="img/certifikat-3.jpg"
+            data-image-alt="Certifikát 3"
+          >
+            <img src="img/certifikat-3.jpg" alt="Certifikát 3" />
+            <span>Certifikát 3</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="sluzby section container" id="sluzby">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Služby</span>
+          <h2>Masáže a terapie</h2>
+          <p class="section-lead">
+            Vyberte si službu, která vás zajímá. Pokud si nejste jistí, ráda vám
+            poradím při objednání.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card glass-card reveal reveal-delay-1">
+            <button class="service-toggle" type="button" aria-expanded="false">
+              <span>
+                <strong>Relaxační masáž</strong>
+                <small>Uvolnění napětí a celkové zklidnění</small>
+              </span>
+              <span class="service-icon">+</span>
+            </button>
+            <div class="service-content">
+              <p>
+                Relaxační masáž pomáhá uvolnit přetížené svaly, zpomalit a na
+                chvíli se odpojit od každodenního stresu. Je vhodná pro ty, kdo
+                chtějí tělu dopřát regeneraci a příjemnou úlevu.
+              </p>
+            </div>
+          </article>
+
+          <article class="service-card glass-card reveal reveal-delay-2">
+            <button class="service-toggle" type="button" aria-expanded="false">
+              <span>
+                <strong>Lymfatická masáž</strong>
+                <small>Jemná podpora odtoku lymfy</small>
+              </span>
+              <span class="service-icon">+</span>
+            </button>
+            <div class="service-content">
+              <p>
+                Lymfatická masáž je velmi jemná technika zaměřená na podporu
+                lymfatického systému. Pomáhá při pocitu těžkých nohou, otocích i
+                celkové únavě organismu.
+              </p>
+            </div>
+          </article>
+
+          <article class="service-card glass-card reveal reveal-delay-3">
+            <button class="service-toggle" type="button" aria-expanded="false">
+              <span>
+                <strong>Dornova metoda</strong>
+                <small>Šetrná práce s pohybovým aparátem</small>
+              </span>
+              <span class="service-icon">+</span>
+            </button>
+            <div class="service-content">
+              <p>
+                Dornova metoda je jemná manuální technika, která se zaměřuje na
+                srovnání kloubů a páteře do přirozenější polohy. Často je
+                vyhledávaná při bolestech zad, pánve nebo při dlouhodobém
+                přetížení.
+              </p>
+            </div>
+          </article>
+
+          <article class="service-card glass-card reveal reveal-delay-1">
+            <button class="service-toggle" type="button" aria-expanded="false">
+              <span>
+                <strong>Baňkování</strong>
+                <small>Tradiční technika pro uvolnění a prokrvení</small>
+              </span>
+              <span class="service-icon">+</span>
+            </button>
+            <div class="service-content">
+              <p>
+                Baňkování podporuje prokrvení, uvolnění svalů a celkovou
+                regeneraci. Vhodná intenzita se vždy přizpůsobuje aktuálnímu
+                stavu klienta.
+              </p>
+            </div>
+          </article>
+
+          <article class="service-card glass-card reveal reveal-delay-2">
+            <button class="service-toggle" type="button" aria-expanded="false">
+              <span>
+                <strong>Tejpování</strong>
+                <small>Podpora svalů, kloubů a přetížených míst</small>
+              </span>
+              <span class="service-icon">+</span>
+            </button>
+            <div class="service-content">
+              <p>
+                Tejpování slouží jako doplněk péče při přetížení, bolestech i
+                rekonvalescenci. Pomáhá stabilizovat vybrané partie a ulevit od
+                nepříjemného napětí.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -145,16 +281,24 @@
         </div>
 
         <div class="contact-grid">
-          <a class="glass-card contact-card magnetic reveal reveal-delay-1" href="tel:+420731318636">
+          <a
+            class="glass-card contact-card magnetic reveal reveal-delay-1"
+            href="tel:+420731318636"
+          >
             <span class="contact-label">Telefon</span>
             <strong>+420 731 318 636</strong>
             <span>Zavolejte a domluvíme termín.</span>
           </a>
-          <a class="glass-card contact-card magnetic reveal reveal-delay-2" href="mailto:masazetep@gmail.com">
+
+          <a
+            class="glass-card contact-card magnetic reveal reveal-delay-2"
+            href="mailto:masazetep@gmail.com"
+          >
             <span class="contact-label">E-mail</span>
             <strong>masazetep@gmail.com</strong>
             <span>Napište stručně, o co máte zájem.</span>
           </a>
+
           <div class="glass-card contact-card reveal reveal-delay-3">
             <span class="contact-label">Studio</span>
             <strong>Velký Ořechov 208</strong>
@@ -165,15 +309,27 @@
     </main>
 
     <footer class="site-footer container">
-      <p>Masáže Zdeňka • péče s citem • <a href="tel:+420731318636">+420 731 318 636</a></p>
+      <p>
+        Masáže Zdeňka • péče s citem •
+        <a href="tel:+420731318636">+420 731 318 636</a>
+      </p>
     </footer>
 
-    <div class="modal" id="price-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="price-modal-title">
+    <div
+      class="modal"
+      id="image-modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="image-modal-title"
+    >
       <div class="modal-backdrop" data-close-modal></div>
-      <div class="modal-panel">
-        <button class="modal-close" type="button" data-close-modal aria-label="Zavřít náhled">×</button>
-        <h3 id="price-modal-title">Ceník služeb</h3>
-        <img src="cenik-zdenka.png" alt="Ceník služeb Masáže Zdeňka ve zvětšeném náhledu" />
+      <div class="modal-panel modal-panel-image">
+        <button class="modal-close" type="button" data-close-modal aria-label="Zavřít náhled">
+          ×
+        </button>
+        <h3 id="image-modal-title">Certifikát</h3>
+        <img id="modal-image" src="" alt="" />
       </div>
     </div>
 
