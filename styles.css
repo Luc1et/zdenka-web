@@ -907,6 +907,7 @@ body.pointer-ready .cursor-aura {
 
   .hero-visual {
     order: 1;
+    margin-top: 3rem;
   }
 
   .hero h1 {
