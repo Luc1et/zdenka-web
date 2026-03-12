@@ -928,42 +928,42 @@ body.pointer-ready .cursor-aura {
   .menu-toggle {
     display: block;
   }
-  .site-nav {
-    position: fixed;
-    top: calc(var(--header-h) + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
+.site-nav {
+  position: fixed;
+  top: calc(var(--header-h) + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
 
-    width: calc(100vw - 28px);
-    max-width: 420px;
+  width: calc(100vw - 28px);
+  max-width: 420px;
 
-    z-index: 2000;
+  z-index: 2000;
 
-    padding: 12px;
-    flex-direction: column;
-    align-items: stretch;
+  padding: 12px;
+  flex-direction: column;
+  align-items: stretch;
 
-    background: rgba(255, 250, 244, 0.94);
-    border: 1px solid rgba(255, 255, 255, 0.66);
-    border-radius: 28px;
-    box-shadow: 0 18px 44px rgba(28, 37, 34, 0.12);
+  background: rgba(255, 250, 244, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: 28px;
+  box-shadow: 0 18px 44px rgba(28, 37, 34, 0.12);
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease,
-      visibility 0.25s;
-  }
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s;
+}
 
   .site-header.menu-open .site-nav {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 
   .site-nav a {
@@ -976,6 +976,7 @@ body.pointer-ready .cursor-aura {
 }
 
 @media (max-width: 820px) {
+
   a {
     margin-left: 0.5rem;
   }
