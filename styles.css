@@ -117,6 +117,12 @@ button {
   padding: clamp(76px, 8vw, 16px) 0;
 }
 
+.section:not(.hero),
+.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 960px;
+}
+
 .section-soft {
   background: linear-gradient(
     180deg,

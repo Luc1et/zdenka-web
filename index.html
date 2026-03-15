@@ -9,14 +9,27 @@
       content="Masáže, baňkování, tejpování a doplňkové terapie na Velkém Ořechově. Jemná péče s citem a zkušeností."
     />
     <meta name="theme-color" content="#173a33" />
+    <link rel="preload" href="styles.css" as="style" />
     <link
       rel="preload"
       as="image"
       href="img/dark-green-background.webp"
       fetchpriority="high"
     />
+    <link
+      rel="preload"
+      as="image"
+      href="img/logo-zdenka-transparent3.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      as="style"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -38,6 +51,7 @@
                 width="758"
                 height="768"
                 decoding="async"
+                fetchpriority="low"
               />
               <span>
                 <strong>Zdeňka Mahdalová</strong>
@@ -101,6 +115,7 @@
                   width="2048"
                   height="2048"
                   loading="eager"
+                  decoding="async"
                   fetchpriority="high"
                 />
               </div>
@@ -496,7 +511,7 @@
 
     <footer class="site-footer container">
       <p>
-        Masáže Zdeňka Mahdalová • Velký Ořechov 208 •
+        © 2026 Masáže Zdeňka Mahdalová
         <a href="tel:+420731318636">+420 731 318 636</a>
       </p>
     </footer>

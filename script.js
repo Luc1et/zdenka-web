@@ -16,24 +16,16 @@ const reducedMotion = window.matchMedia(
 ).matches;
 const heroRevealItems = document.querySelectorAll('.hero .reveal');
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
+const scheduleDeferredWork = (callback) => {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(callback, { timeout: 1200 });
+    return;
+  }
+
+  window.setTimeout(callback, 180);
+};
 
 heroRevealItems.forEach((item) => item.classList.add('is-visible'));
-
-revealItems.forEach((item) => {
-  if (item.closest('.hero')) return;
-  revealObserver.observe(item);
-});
 
 if (menuToggle) {
   menuToggle.addEventListener('click', () => {
@@ -57,74 +49,6 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-if (supportsFinePointer) {
-  let pointerRaf = 0;
-  let lastPointerEvent = null;
-
-  window.addEventListener(
-    'pointermove',
-    (event) => {
-      lastPointerEvent = event;
-
-      if (pointerRaf) return;
-
-      pointerRaf = window.requestAnimationFrame(() => {
-        if (!lastPointerEvent) return;
-
-        body.classList.add('pointer-ready');
-        const x = `${(lastPointerEvent.clientX / window.innerWidth) * 100}%`;
-        const y = `${(lastPointerEvent.clientY / window.innerHeight) * 100}%`;
-        document.documentElement.style.setProperty('--mx', x);
-        document.documentElement.style.setProperty('--my', y);
-        pointerRaf = 0;
-      });
-    },
-    { passive: true }
-  );
-}
-
-if (supportsFinePointer && !reducedMotion) {
-  magneticItems.forEach((item) => {
-    item.addEventListener(
-      'pointermove',
-      (event) => {
-        const rect = item.getBoundingClientRect();
-        const x = event.clientX - rect.left - rect.width / 2;
-        const y = event.clientY - rect.top - rect.height / 2;
-
-        item.style.transform = `translate(${x * 0.04}px, ${y * 0.04}px)`;
-      },
-      { passive: true }
-    );
-
-    item.addEventListener('pointerleave', () => {
-      item.style.transform = '';
-    });
-  });
-}
-
-if (tiltItem && supportsFinePointer && !reducedMotion) {
-  tiltItem.addEventListener(
-    'pointermove',
-    (event) => {
-      if (window.innerWidth < 768) return;
-
-      const rect = tiltItem.getBoundingClientRect();
-      const px = (event.clientX - rect.left) / rect.width;
-      const py = (event.clientY - rect.top) / rect.height;
-      const rx = (py - 0.5) * -7;
-      const ry = (px - 0.5) * 7;
-
-      tiltItem.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    },
-    { passive: true }
-  );
-
-  tiltItem.addEventListener('pointerleave', () => {
-    tiltItem.style.transform = '';
-  });
-}
-
 const expandMoreServices = () => {
   if (!moreServicesTrigger || !servicesGrid) return;
   if (!servicesGrid.classList.contains('is-expanded')) {
@@ -133,13 +57,100 @@ const expandMoreServices = () => {
   }
 };
 
-if (moreServicesCta) {
-  moreServicesCta.addEventListener('click', (event) => {
-    event.preventDefault();
-    expandMoreServices();
-    document.getElementById('dalsi')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
+scheduleDeferredWork(() => {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.14 }
+  );
+
+  revealItems.forEach((item) => {
+    if (item.closest('.hero')) return;
+    revealObserver.observe(item);
   });
-}
+
+  if (supportsFinePointer) {
+    let pointerRaf = 0;
+    let lastPointerEvent = null;
+
+    window.addEventListener(
+      'pointermove',
+      (event) => {
+        lastPointerEvent = event;
+
+        if (pointerRaf) return;
+
+        pointerRaf = window.requestAnimationFrame(() => {
+          if (!lastPointerEvent) return;
+
+          body.classList.add('pointer-ready');
+          const x = `${(lastPointerEvent.clientX / window.innerWidth) * 100}%`;
+          const y = `${(lastPointerEvent.clientY / window.innerHeight) * 100}%`;
+          document.documentElement.style.setProperty('--mx', x);
+          document.documentElement.style.setProperty('--my', y);
+          pointerRaf = 0;
+        });
+      },
+      { passive: true }
+    );
+  }
+
+  if (supportsFinePointer && !reducedMotion) {
+    magneticItems.forEach((item) => {
+      item.addEventListener(
+        'pointermove',
+        (event) => {
+          const rect = item.getBoundingClientRect();
+          const x = event.clientX - rect.left - rect.width / 2;
+          const y = event.clientY - rect.top - rect.height / 2;
+
+          item.style.transform = `translate(${x * 0.04}px, ${y * 0.04}px)`;
+        },
+        { passive: true }
+      );
+
+      item.addEventListener('pointerleave', () => {
+        item.style.transform = '';
+      });
+    });
+  }
+
+  if (tiltItem && supportsFinePointer && !reducedMotion) {
+    tiltItem.addEventListener(
+      'pointermove',
+      (event) => {
+        if (window.innerWidth < 768) return;
+
+        const rect = tiltItem.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width;
+        const py = (event.clientY - rect.top) / rect.height;
+        const rx = (py - 0.5) * -7;
+        const ry = (px - 0.5) * 7;
+
+        tiltItem.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      },
+      { passive: true }
+    );
+
+    tiltItem.addEventListener('pointerleave', () => {
+      tiltItem.style.transform = '';
+    });
+  }
+
+  if (moreServicesCta) {
+    moreServicesCta.addEventListener('click', (event) => {
+      event.preventDefault();
+      expandMoreServices();
+      document.getElementById('dalsi')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  }
+});
