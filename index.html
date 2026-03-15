@@ -9,6 +9,12 @@
       content="Masáže, baňkování, tejpování a doplňkové terapie na Velkém Ořechově. Jemná péče s citem a zkušeností."
     />
     <meta name="theme-color" content="#173a33" />
+    <link
+      rel="preload"
+      as="image"
+      href="img/dark-green-background.webp"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,6 +35,9 @@
               <img
                 src="img/zdenka-logo-male-z.webp"
                 alt="Logo Masáže Zdeňka"
+                width="758"
+                height="768"
+                decoding="async"
               />
               <span>
                 <strong>Zdeňka Mahdalová</strong>
@@ -84,11 +93,17 @@
 
           <div class="hero-visual reveal reveal-delay-1" data-tilt>
             <div class="hero-logo-wrap">
-              <img
-                src="img/logo-zdenka-transparent3.webp"
-                alt="Logo Zdeňky Mahdalové"
-                class="hero-logo"
-              />
+              <div class="hero-logo-motion">
+                <img
+                  src="img/logo-zdenka-transparent3.webp"
+                  alt="Logo Zdeňky Mahdalové"
+                  class="hero-logo"
+                  width="2048"
+                  height="2048"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -486,6 +501,6 @@
       </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
