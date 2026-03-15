@@ -460,6 +460,7 @@ body.pointer-ready .cursor-aura {
   font-size: clamp(1.06rem, 1.35vw, 1.22rem);
   font-weight: 900;
   line-height: 1.45;
+  white-space: nowrap;
   color: #e1cc96;
 }
 
@@ -1087,6 +1088,11 @@ body.pointer-ready .cursor-aura {
   .hero-actions {
     margin-top: 6px;
   }
+
+  .hero-topline {
+    font-size: clamp(0.84rem, 2.2vw, 1rem);
+    letter-spacing: 0.14em;
+  }
 }
 
 @media (max-width: 820px) {
@@ -1219,6 +1225,11 @@ body.pointer-ready .cursor-aura {
     margin: 8px auto 10px;
     font-size: clamp(2.05rem, 8.2vw, 2.7rem);
     max-width: 7.5ch;
+  }
+
+  .hero-topline {
+    font-size: clamp(0.76rem, 2vw, 0.92rem);
+    letter-spacing: 0.12em;
   }
 
   .hero-subtitle {
