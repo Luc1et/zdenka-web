@@ -49,10 +49,10 @@
 
           <nav class="site-nav" id="site-nav" aria-label="Hlavní navigace">
             <a href="#nabidka">Nabídka masáží</a>
+            <a href="#omne">O mně</a>
             <a href="#prostredi">Jak to u mě vypadá</a>
             <a href="#faq">Časté dotazy</a>
-            <a href="#kontakt">Kontakt</a>
-            <a class="nav-cta" href="tel:+420731318636">Domluvit termín</a>
+            <a class="nav-cta" href="#kontakt">Domluvit termín</a>
           </nav>
         </div>
       </div>
@@ -97,7 +97,7 @@
       <section class="section container" id="nabidka">
         <div class="section-heading reveal">
           <span class="eyebrow">Nabídka masáží</span>
-          <h2>Co pro vás mohu udělat</h2>
+          <h2>Co vám nabízím</h2>
           <p>
             Každá návštěva začíná krátkou domluvou. Společně vybereme péči,
             která dává smysl právě vám.
@@ -110,10 +110,11 @@
             id="sluzba-kombinace"
           >
             <span class="service-meta">90 nebo 60 minut</span>
-            <h3>Masáž s baňkováním</h3>
+            <h3>Klasická masáž</h3>
             <p>
-              Spojení klasické masáže a baňkování pro hlubší uvolnění zad, šíje
-              a přetížených míst. Vhodné tam, kde běžná masáž nestačí.
+              Pomáhá uvolnit přetížené svaly, zmírnit napětí a 
+              podpořit přirozenou regeneraci těla. Přináší úlevu při únavě, 
+              ztuhlosti i dlouhodobém přetížení.
             </p>
             <div class="service-footer">
               <small>Od 500 Kč</small>
@@ -126,10 +127,11 @@
             id="sluzba-zada"
           >
             <span class="service-meta">30 minut</span>
-            <h3>Masáž zad a šíje</h3>
+            <h3>Lymfatická masáž</h3>
             <p>
-              Kratší, cílená péče pro unavená záda a ztuhlý krk. Ideální, když
-              chcete rychle ulevit od napětí z práce nebo dlouhého sezení.
+              Jemná technika podporující tok lymfy a odvod přebytečných 
+              tekutin z těla. Přispívá k pocitu lehkosti, regeneraci 
+              organismu a celkové rovnováze.
             </p>
             <div class="service-footer">
               <small>300 Kč</small>
@@ -142,10 +144,12 @@
             id="sluzba-oblicej"
           >
             <span class="service-meta">30 minut</span>
-            <h3>Masáž obličeje a hlavy</h3>
+            <h3>Dornova metoda</h3>
             <p>
-              Jemná relaxační péče pro uvolnění svalového napětí, zklidnění a
-              chvíli, kdy můžete opravdu vypnout.
+              Šetrná manuální metoda zaměřená na vyrovnání 
+              kloubů a páteře. Pomáhá obnovit přirozené postavení 
+              těla a může ulevit při bolestech zad či pohybových 
+              potížích.
             </p>
             <div class="service-footer">
               <small>350 Kč</small>
@@ -158,11 +162,12 @@
             id="sluzba-castecna"
           >
             <span class="service-meta">45 minut</span>
-            <h3>Částečná masáž</h3>
+            <h3>Trigger point terapie</h3>
             <p>
-              Péče zaměřená jen na vybranou oblast — ruce, nohy nebo plosky.
-              Dobrá volba, když nepotřebujete celkovou masáž, ale konkrétní
-              úlevu.
+              Cílená práce s bolestivými spoušťovými body 
+              ve svalech. Pomáhá uvolnit hluboké napětí a 
+              zmírnit bolest, která se může přenášet i do jiných 
+              částí těla.
             </p>
             <div class="service-footer">
               <small>450 Kč</small>
@@ -175,11 +180,12 @@
             id="sluzba-klasicka"
           >
             <span class="service-meta">90 minut</span>
-            <h3>Celková klasická masáž</h3>
+            <h3>Baňkování</h3>
             <p>
-              Delší regenerace pro tělo, které si zaslouží víc času. Vhodná při
-              únavě, přetížení i ve chvíli, kdy si chcete dopřát klidnější
-              tempo.
+              Tradiční metoda využívající podtlak 
+              ke stimulaci prokrvení a uvolnění zatuhlých 
+              svalů. Podporuje regeneraci tkání a přirozené 
+              ozdravné procesy těla.
             </p>
             <div class="service-footer">
               <small>900 Kč</small>
@@ -187,20 +193,124 @@
             </div>
           </article>
 
-          <article
-            class="service-card glass-card reveal reveal-delay-3"
-            id="sluzba-doplnkove"
+          <button
+            class="service-card service-card-more glass-card reveal reveal-delay-3"
+            id="sluzba-dalsi"
+            type="button"
+            aria-expanded="false"
+            aria-controls="dalsi-sluzby"
           >
-            <span class="service-meta">Doplňkové služby</span>
-            <h3>Tejpování, svíčka a parafín</h3>
+            <span class="service-meta">Rozšířená nabídka</span>
+            <h3>Objevit další druhy masáží</h3>
             <p>
-              Podle potřeby je možné péči doplnit tejpováním, svíčkou nebo
-              parafínem na ruce či nohy. Ráda poradím, co má ve vašem případě
-              smysl.
+              Další techniky tu čekají hned pod tímto boxem. Stačí kliknout a
+              kompletní nabídka se plynule rozbalí přímo tady, bez odchodu na
+              jinou stránku.
             </p>
             <div class="service-footer">
-              <small>Individuálně dle výběru</small>
-              <a href="mailto:masazetep@gmail.com">Napsat dotaz</a>
+              <small>Další 4 služby</small>
+              <span>Zobrazit další</span>
+            </div>
+          </button>
+
+          <article
+            class="service-card service-card-extra glass-card"
+            id="dalsi-sluzby"
+          >
+            <span class="service-meta">Doplňková péče</span>
+            <h3>Tejpování</h3>
+            <p>
+              Pomáhá odlehčit namáhaným svalům a podpořit stabilitu vybraných
+              míst při běžném pohybu i rekonvalescenci. Vhodné jako samostatná
+              péče i jako navázání na masáž.
+            </p>
+            <div class="service-footer">
+              <small>Dle rozsahu</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">45 minut</span>
+            <h3>Terapie plosky nohy</h3>
+            <p>
+              Citlivá práce s reflexními body na chodidlech přináší úlevu
+              unaveným nohám a zároveň působí harmonizačně na celé tělo.
+              Příjemná volba pro zklidnění i regeneraci.
+            </p>
+            <div class="service-footer">
+              <small>Dle domluvy</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">30 minut</span>
+            <h3>Masáž obličeje a hlavy</h3>
+            <p>
+              Jemná péče zaměřená na uvolnění čelistí, spánků, šíje a vlasové
+              části hlavy. Pomáhá při napětí, únavě i ve chvíli, kdy si chcete
+              dopřát klidnější zastavení.
+            </p>
+            <div class="service-footer">
+              <small>Dle domluvy</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">Relaxační péče</span>
+            <h3>Terapie zvukem</h3>
+            <p>
+              Práce se zvukem podporuje zklidnění, uvolnění a jemné naladění
+              organismu. Vhodná pro chvíle, kdy tělo potřebuje oddech a mysl
+              vypnout od každodenního tempa.
+            </p>
+            <div class="service-footer">
+              <small>Dle domluvy</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">Doplňková péče</span>
+            <h3>Svíčkování</h3>
+            <p>
+              Jemný doplněk pro chvíle, kdy chcete podpořit pocit lehkosti a
+              zklidnění. Nejlépe funguje jako individuálně zvolená součást péče
+              podle toho, co právě dává smysl.
+            </p>
+            <div class="service-footer">
+              <small>Dle výběru</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">Doplňková péče</span>
+            <h3>Parafínový zábal</h3>
+            <p>
+              Příjemná hřejivá péče pro ruce nebo nohy, která pomáhá změkčit
+              pokožku, uvolnit drobné napětí a dopřát tělu klidnější doznění po
+              hlavní terapii.
+            </p>
+            <div class="service-footer">
+              <small>Dle rozsahu</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">45 minut</span>
+            <h3>Relaxační masáž zad a šíje</h3>
+            <p>
+              Klidnější forma péče zaměřená na nejčastěji přetížené partie.
+              Pomáhá uvolnit ramena, šíji i horní část zad a přináší příjemnou
+              úlevu po náročném dni.
+            </p>
+            <div class="service-footer">
+              <small>Dle domluvy</small>
+              <a href="#kontakt">Mám zájem</a>
             </div>
           </article>
         </div>
@@ -231,10 +341,10 @@
                 class="ambience-logo"
                 src="img/logo-zdenka-removebg-preview.png"
                 alt="Značka Zdeňky"
-              /> -->
+              />
               <div class="ambience-note">
                 <span>Masérna na Velkém Ořechově</span>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -243,7 +353,7 @@
       <section class="section container" id="omne">
         <div class="about-layout">
           <div class="section-heading reveal">
-            <span class="eyebrow">O Zdeňce</span>
+            <span class="eyebrow">O mně</span>
             <h2>Péče, za kterou jsou roky praxe i chuť učit se dál</h2>
           </div>
 
@@ -338,7 +448,11 @@
       <section class="section container" id="kontakt">
         <div class="section-heading reveal">
           <span class="eyebrow">Kontakt</span>
-          <h2>Objednání jednoduše a bez zbytečných kroků</h2>
+          <h2>Snadná a rychlá domluva</h2>
+          <p>
+            Vyberte si způsob, který je vám nejpříjemnější. Zavolat můžete hned,
+            nebo napsat e-mail a termín doladíme spolu.
+          </p>
         </div>
 
         <div class="contact-grid">
@@ -365,12 +479,6 @@
             <strong>Velký Ořechov 208</strong>
             <span>Provozní doba dle objednávek.</span>
           </div>
-        </div>
-
-        <div class="contact-cta reveal reveal-delay-4">
-          <a class="btn btn-primary magnetic" href="tel:+420731318636"
-            >Chci si domluvit termín</a
-          >
         </div>
       </section>
     </main>

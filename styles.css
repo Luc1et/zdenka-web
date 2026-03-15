@@ -15,7 +15,7 @@
   --radius-lg: 24px;
   --radius-md: 18px;
   --container: min(1180px, calc(100vw - 32px));
-  --header-h: 96px;
+  --header-h: 64px;
 }
 
 * {
@@ -265,11 +265,11 @@ main {
 .header-shell {
   width: 100%;
   min-height: var(--header-h);
-  padding: 14px 28px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 14px;
   background: linear-gradient(
     135deg,
     rgba(239, 235, 224, 0.96),
@@ -282,13 +282,13 @@ main {
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   min-width: 0;
 }
 
 .brand img {
-  width: 62px;
-  height: 62px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
   filter: drop-shadow(0 10px 18px rgba(19, 33, 28, 0.16));
 }
@@ -299,10 +299,10 @@ main {
 }
 
 .brand strong {
-  font-size: 1.65rem;
+  font-size: 1.42rem;
   font-weight: 700;
   color: rgba(24, 49, 43, 0.92);
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 
 .brand small {
@@ -312,7 +312,7 @@ main {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .site-nav a {
@@ -321,7 +321,7 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
+  padding: 10px 14px;
   color: rgba(24, 49, 43, 0.82);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -335,9 +335,9 @@ main {
 .site-nav a::after {
   content: "";
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 8px;
+  left: 14px;
+  right: 14px;
+  bottom: 7px;
   height: 2px;
   border-radius: 999px;
   background: rgba(201, 160, 75, 0.64);
@@ -379,7 +379,6 @@ main {
   background: linear-gradient(135deg, var(--green), var(--green-2));
   box-shadow: 0 14px 24px rgba(23, 58, 51, 0.18);
   border-radius: 999px;
-  
 }
 
 .site-nav .nav-cta:hover,
@@ -390,8 +389,8 @@ main {
 
 .menu-toggle {
   display: none;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 0;
   border-radius: 50%;
   background: rgba(246, 244, 236, 0.82);
@@ -401,9 +400,9 @@ main {
 
 .menu-toggle span {
   display: block;
-  width: 20px;
+  width: 18px;
   height: 2px;
-  margin: 4px auto;
+  margin: 3px auto;
   background: var(--green);
   border-radius: 999px;
   transition:
@@ -417,6 +416,7 @@ main {
   padding-top: 0px;
   padding-bottom: 0;
   min-height: calc(100svh - var(--header-h));
+  scroll-margin-top: var(--header-h);
   display: flex;
   align-items: center;
 }
@@ -534,8 +534,7 @@ main {
 .hero-subtitle + .hero-subtitle {
   margin-top: 10px;
 }
-.hero-actions,
-.contact-cta {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -681,6 +680,79 @@ main {
   gap: 18px;
   align-content: start;
   min-height: 100%;
+}
+
+.service-card-more {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  background: linear-gradient(180deg, var(--card-strong), var(--card));
+  font: inherit;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.service-card-more:hover,
+.service-card-more:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 44px rgba(27, 34, 31, 0.12);
+  border-color: rgba(201, 160, 75, 0.26);
+  outline: none;
+}
+
+.service-card-more .service-footer span {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.service-card-extra {
+  display: none;
+}
+
+.services-grid.is-expanded .service-card-extra {
+  display: grid;
+  animation: serviceCardReveal 0.55s ease both;
+}
+
+.services-grid.is-expanded .service-card-more {
+  display: none;
+}
+
+.service-card-more .service-meta {
+  background: rgba(23, 58, 51, 0.08);
+  color: var(--green);
+}
+
+.service-card-more h3 {
+  font-size: clamp(2rem, 2.4vw, 2.3rem);
+}
+
+.service-card-more p {
+  color: rgba(24, 49, 43, 0.82);
+}
+
+.service-card-link {
+  color: inherit;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.service-card-link:hover,
+.service-card-link:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 44px rgba(27, 34, 31, 0.12);
+  border-color: rgba(201, 160, 75, 0.26);
+  outline: none;
+}
+
+.service-card-link .service-footer span {
+  color: var(--green);
+  font-weight: 700;
 }
 
 .service-meta,
@@ -889,11 +961,6 @@ main {
   line-height: 1.05;
 }
 
-.contact-cta {
-  justify-content: center;
-  margin-top: 28px;
-}
-
 .site-footer {
   padding: 0 0 40px;
   color: #67645d;
@@ -954,6 +1021,17 @@ main {
   }
 }
 
+@keyframes serviceCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1080px) {
   .hero-inner,
   .ambience-layout,
@@ -994,16 +1072,29 @@ main {
     margin-top: 2rem;
   }
   :root {
-    --header-h: 78px;
+    --header-h: 60px;
   }
 
   .header-shell {
     width: 100%;
-    padding-inline: 14px;
+    padding: 7px 14px;
+    gap: 12px;
+  }
+
+  .brand img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand strong {
+    font-size: 1.2rem;
+    margin-left: 0.35rem;
   }
 
   .menu-toggle {
     display: block;
+    width: 38px;
+    height: 38px;
   }
   .site-nav {
     position: fixed;
@@ -1015,7 +1106,7 @@ main {
 
     z-index: 2000;
 
-    padding: 12px;
+    padding: 10px;
     flex-direction: column;
     align-items: stretch;
 
@@ -1268,46 +1359,46 @@ main {
   }
 
   .hero-inner {
-    width: min(720px, calc(100vw - 56px));
+    width: min(760px, calc(100vw - 48px));
     margin: 0 auto;
-    gap: clamp(16px, 2svh, 22px);
+    gap: clamp(18px, 2.1svh, 24px);
   }
 
   .hero-copy {
-    max-width: 720px;
-    row-gap: 14px;
+    max-width: 760px;
+    row-gap: 16px;
   }
 
   .hero-logo-wrap {
-    width: clamp(280px, calc((100svh - var(--header-h)) * 0.34), 380px);
-    height: clamp(280px, calc((100svh - var(--header-h)) * 0.34), 380px);
+    width: clamp(276px, calc((100svh - var(--header-h)) * 0.33), 372px);
+    height: clamp(276px, calc((100svh - var(--header-h)) * 0.33), 372px);
   }
 
   .hero h1 {
-    font-size: clamp(4.8rem, 8.2vw, 6rem);
-    margin: 12px auto 14px;
+    font-size: clamp(5.8rem, 9.5vw, 7.15rem);
+    margin: 16px auto 18px;
     max-width: 9ch;
   }
 
   .hero-subtitle {
     max-width: 30ch;
-    font-size: clamp(1.24rem, 2vw, 1.4rem);
-    line-height: 1.56;
+    font-size: clamp(1.42rem, 2.28vw, 1.62rem);
+    line-height: 1.52;
     color: rgba(248, 244, 234, 0.86);
   }
 
   .hero-actions {
-    margin-top: 10px;
+    margin-top: 14px;
   }
 
   .hero .btn-primary {
-    min-height: 66px;
-    padding: 0 36px;
-    font-size: 1.08rem;
+    min-height: 72px;
+    padding: 0 42px;
+    font-size: 1.14rem;
   }
 
   .hero-topline {
-    font-size: clamp(1rem, 1.45vw, 1.12rem);
+    font-size: clamp(1.08rem, 1.6vw, 1.2rem);
     letter-spacing: 0.14em;
   }
 }
@@ -1318,7 +1409,7 @@ main {
   }
 
   .brand strong {
-    font-size: 1rem;
+    font-size: 1.08rem;
   }
   .header-bar {
     min-height: 42px;
@@ -1328,7 +1419,7 @@ main {
   .header-shell
   {
     width: 100%;
-    padding: 0px 14px;
+    padding: 6px 14px;
   }
 
   .ornament-bar {
@@ -1343,6 +1434,10 @@ main {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --header-h: 56px;
+  }
+
   .section {
     padding: 62px 0;
   }
@@ -1387,8 +1482,7 @@ main {
   }
 
   .hero-actions,
-  .hero-chips,
-  .contact-cta {
+  .hero-chips {
     width: 100%;
   }
 
@@ -1404,6 +1498,7 @@ main {
 
   .header-shell {
     border-radius: 0;
+    padding: 4px 12px;
   }
 
   .glass-card,
@@ -1417,8 +1512,22 @@ main {
   }
 
   .brand img {
-    width: 52px;
-    height: 52px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand strong {
+    font-size: 1rem;
+    margin-left: 0.25rem;
+  }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menu-toggle span {
+    width: 16px;
   }
 }
 

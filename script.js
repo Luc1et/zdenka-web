@@ -5,6 +5,8 @@ const navLinks = document.querySelectorAll('.site-nav a');
 const revealItems = document.querySelectorAll('.reveal');
 const magneticItems = document.querySelectorAll('.magnetic');
 const tiltItem = document.querySelector('[data-tilt]');
+const moreServicesTrigger = document.querySelector('.service-card-more');
+const servicesGrid = document.querySelector('.services-grid');
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -81,5 +83,12 @@ if (tiltItem) {
 
   tiltItem.addEventListener('pointerleave', () => {
     tiltItem.style.transform = '';
+  });
+}
+
+if (moreServicesTrigger && servicesGrid) {
+  moreServicesTrigger.addEventListener('click', () => {
+    servicesGrid.classList.add('is-expanded');
+    moreServicesTrigger.setAttribute('aria-expanded', 'true');
   });
 }
