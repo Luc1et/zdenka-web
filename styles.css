@@ -50,7 +50,7 @@ body {
 body::before,
 .hero-backdrop,
 .ambience-panel-bg {
-  background-image: url("img/dark-green-background.png");
+  background-image: url("img/dark-green-background.webp");
   background-size: cover;
   background-position: center;
 }
@@ -680,32 +680,16 @@ main {
   gap: 18px;
   align-content: start;
   min-height: 100%;
+  transition:
+    transform 0.24s ease-out,
+    box-shadow 0.24s ease-out,
+    border-color 0.24s ease-out;
 }
 
 .service-card-more {
-  appearance: none;
-  width: 100%;
-  text-align: left;
+  justify-items: start;
+  align-content: center;
   color: inherit;
-  background: linear-gradient(180deg, var(--card-strong), var(--card));
-  font: inherit;
-  transition:
-    transform 0.24s ease,
-    box-shadow 0.24s ease,
-    border-color 0.24s ease;
-}
-
-.service-card-more:hover,
-.service-card-more:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 44px rgba(27, 34, 31, 0.12);
-  border-color: rgba(201, 160, 75, 0.26);
-  outline: none;
-}
-
-.service-card-more .service-footer span {
-  color: var(--green);
-  font-weight: 700;
 }
 
 .service-card-extra {
@@ -730,24 +714,24 @@ main {
   font-size: clamp(2rem, 2.4vw, 2.3rem);
 }
 
-.service-card-more p {
-  color: rgba(24, 49, 43, 0.82);
+.services-more {
+  color: rgba(24, 49, 43, 0.7);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.service-card-more-cta {
+  margin-top: 8px;
+  min-width: 240px;
+  transition:
+    transform 0.24s ease-out,
+    box-shadow 0.24s ease-out,
+    background 0.24s ease-out;
 }
 
 .service-card-link {
   color: inherit;
-  transition:
-    transform 0.24s ease,
-    box-shadow 0.24s ease,
-    border-color 0.24s ease;
-}
-
-.service-card-link:hover,
-.service-card-link:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 44px rgba(27, 34, 31, 0.12);
-  border-color: rgba(201, 160, 75, 0.26);
-  outline: none;
 }
 
 .service-card-link .service-footer span {
@@ -805,6 +789,31 @@ main {
 .service-footer a {
   color: var(--green);
   font-weight: 700;
+  transition:
+    color 0.24s ease-out,
+    text-shadow 0.24s ease-out,
+    transform 0.24s ease-out;
+}
+
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+  .service-card:hover,
+  .service-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 54px rgba(24, 34, 31, 0.14);
+    border-color: rgba(201, 160, 75, 0.2);
+  }
+
+  .service-card:hover .service-footer a,
+  .service-card:focus-within .service-footer a {
+    color: #13362f;
+    text-shadow: 0 0 12px rgba(201, 160, 75, 0.08);
+  }
+
+  .service-card-more:hover .service-card-more-cta,
+  .service-card-more:focus-within .service-card-more-cta {
+    box-shadow: 0 20px 34px rgba(23, 58, 51, 0.28);
+    transform: translateY(-1px);
+  }
 }
 
 .ambience-layout,
@@ -827,7 +836,7 @@ main {
   position: absolute;
   inset: 0;
 
-  background-image: url("img/foto-maserna.png");
+  background-image: url("img/foto-maserna.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

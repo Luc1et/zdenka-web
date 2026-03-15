@@ -6,6 +6,7 @@ const revealItems = document.querySelectorAll('.reveal');
 const magneticItems = document.querySelectorAll('.magnetic');
 const tiltItem = document.querySelector('[data-tilt]');
 const moreServicesTrigger = document.querySelector('.service-card-more');
+const moreServicesCta = document.querySelector('.service-card-more-cta');
 const servicesGrid = document.querySelector('.services-grid');
 
 const revealObserver = new IntersectionObserver(
@@ -86,9 +87,21 @@ if (tiltItem) {
   });
 }
 
-if (moreServicesTrigger && servicesGrid) {
-  moreServicesTrigger.addEventListener('click', () => {
+const expandMoreServices = () => {
+  if (!moreServicesTrigger || !servicesGrid) return;
+  if (!servicesGrid.classList.contains('is-expanded')) {
     servicesGrid.classList.add('is-expanded');
     moreServicesTrigger.setAttribute('aria-expanded', 'true');
+  }
+};
+
+if (moreServicesCta) {
+  moreServicesCta.addEventListener('click', (event) => {
+    event.preventDefault();
+    expandMoreServices();
+    document.getElementById('dalsi')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   });
 }

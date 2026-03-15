@@ -27,7 +27,7 @@
           <div class="header-shell">
             <a class="brand" href="#hero" aria-label="Masáže Zdeňka Mahdalová">
               <img
-                src="img/zdenka-logo-male-z.png"
+                src="img/zdenka-logo-male-z.webp"
                 alt="Logo Masáže Zdeňka"
               />
               <span>
@@ -85,7 +85,7 @@
           <div class="hero-visual reveal reveal-delay-1" data-tilt>
             <div class="hero-logo-wrap">
               <img
-                src="img/logo-zdenka-transparent3.png"
+                src="img/logo-zdenka-transparent3.webp"
                 alt="Logo Zdeňky Mahdalové"
                 class="hero-logo"
               />
@@ -97,10 +97,11 @@
       <section class="section container" id="nabidka">
         <div class="section-heading reveal">
           <span class="eyebrow">Nabídka masáží</span>
-          <h2>Co vám nabízím</h2>
+          <h2>Péče pro tělo i mysl</h2>
           <p>
             Každá návštěva začíná krátkou domluvou. Společně vybereme péči,
-            která dává smysl právě vám.
+            která dává smysl právě vám. Pro vaši představu zde nabídka jednotlivých 
+            druhů péče včetně orientační doby trvání a ceny. 
           </p>
         </div>
 
@@ -193,29 +194,23 @@
             </div>
           </article>
 
-          <button
+          <article
             class="service-card service-card-more glass-card reveal reveal-delay-3"
             id="sluzba-dalsi"
-            type="button"
             aria-expanded="false"
-            aria-controls="dalsi-sluzby"
+            aria-controls="dalsi"
           >
             <span class="service-meta">Rozšířená nabídka</span>
-            <h3>Objevit další druhy masáží</h3>
-            <p>
-              Další techniky tu čekají hned pod tímto boxem. Stačí kliknout a
-              kompletní nabídka se plynule rozbalí přímo tady, bez odchodu na
-              jinou stránku.
-            </p>
-            <div class="service-footer">
-              <small>Další 4 služby</small>
-              <span>Zobrazit další</span>
-            </div>
-          </button>
+            <h3>Další masáže a terapie</h3>
+            <p class="services-more">+4 další techniky</p>
+            <a class="btn btn-primary service-card-more-cta" href="#dalsi"
+              >Prohlédnout nabídku <span aria-hidden="true">→</span></a
+            >
+          </article>
 
           <article
             class="service-card service-card-extra glass-card"
-            id="dalsi-sluzby"
+            id="dalsi"
           >
             <span class="service-meta">Doplňková péče</span>
             <h3>Tejpování</h3>
@@ -237,34 +232,6 @@
               Citlivá práce s reflexními body na chodidlech přináší úlevu
               unaveným nohám a zároveň působí harmonizačně na celé tělo.
               Příjemná volba pro zklidnění i regeneraci.
-            </p>
-            <div class="service-footer">
-              <small>Dle domluvy</small>
-              <a href="#kontakt">Mám zájem</a>
-            </div>
-          </article>
-
-          <article class="service-card service-card-extra glass-card">
-            <span class="service-meta">30 minut</span>
-            <h3>Masáž obličeje a hlavy</h3>
-            <p>
-              Jemná péče zaměřená na uvolnění čelistí, spánků, šíje a vlasové
-              části hlavy. Pomáhá při napětí, únavě i ve chvíli, kdy si chcete
-              dopřát klidnější zastavení.
-            </p>
-            <div class="service-footer">
-              <small>Dle domluvy</small>
-              <a href="#kontakt">Mám zájem</a>
-            </div>
-          </article>
-
-          <article class="service-card service-card-extra glass-card">
-            <span class="service-meta">Relaxační péče</span>
-            <h3>Terapie zvukem</h3>
-            <p>
-              Práce se zvukem podporuje zklidnění, uvolnění a jemné naladění
-              organismu. Vhodná pro chvíle, kdy tělo potřebuje oddech a mysl
-              vypnout od každodenního tempa.
             </p>
             <div class="service-footer">
               <small>Dle domluvy</small>
@@ -302,11 +269,39 @@
 
           <article class="service-card service-card-extra glass-card">
             <span class="service-meta">45 minut</span>
-            <h3>Relaxační masáž zad a šíje</h3>
+            <h3>Relaxační masáž</h3>
             <p>
               Klidnější forma péče zaměřená na nejčastěji přetížené partie.
               Pomáhá uvolnit ramena, šíji i horní část zad a přináší příjemnou
               úlevu po náročném dni.
+            </p>
+            <div class="service-footer">
+              <small>Dle domluvy</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">30 minut</span>
+            <h3>Masáž obličeje a hlavy</h3>
+            <p>
+              Jemná péče zaměřená na uvolnění čelistí, spánků, šíje a vlasové
+              části hlavy. Pomáhá při napětí, únavě i ve chvíli, kdy si chcete
+              dopřát klidnější zastavení.
+            </p>
+            <div class="service-footer">
+              <small>Dle domluvy</small>
+              <a href="#kontakt">Mám zájem</a>
+            </div>
+          </article>
+
+          <article class="service-card service-card-extra glass-card">
+            <span class="service-meta">Relaxační péče</span>
+            <h3>Terapie zvukem</h3>
+            <p>
+              Práce se zvukem podporuje zklidnění, uvolnění a jemné naladění
+              organismu. Vhodná pro chvíle, kdy tělo potřebuje oddech a mysl
+              vypnout od každodenního tempa.
             </p>
             <div class="service-footer">
               <small>Dle domluvy</small>
@@ -322,15 +317,16 @@
             <span class="eyebrow">Jak to u mě vypadá</span>
             <h2>Klidné místo, kde se nemusí spěchat</h2>
             <p>
-              Ve studiu na Velkém Ořechově je prostor pro zklidnění, krátkou
-              domluvu i péči, která se přizpůsobí tomu, s čím přicházíte.
-              Nečekejte nic strojeného — spíš příjemné, komorní prostředí a
+              Masérna na Velkém Ořechově je klidné místo pro krátkou domluvu 
+              i péči, která se přizpůsobí tomu, co právě potřebujete. Nečekejte nic 
+              strojeného — spíš příjemné, komorní prostředí a
               lidský přístup.
             </p>
+            <br>
             <p>
-              Fotky prostoru sem mohou časem přibýt. Už teď ale web ukazuje
-              atmosféru, ve které Zdeňka pracuje: jemně, s citem a bez
-              zbytečného spěchu.
+              Místnost je menší, útulná, poskytuje dostatek klidu 
+              a soukromí. Všechno je připravené tak, aby se člověk mohl 
+              pohodlně uvolnit a nerušil ho zbytečný spěch okolí.
             </p>
           </div>
 
