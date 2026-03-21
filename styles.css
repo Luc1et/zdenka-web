@@ -1482,13 +1482,13 @@ main {
   position: relative;
   overflow: hidden;
   padding-top: 0;
-  padding-bottom: clamp(44px, 6vw, 60px);
+  padding-bottom: 0;
 }
 
 @media (min-width: 1025px) {
   .contact-split {
     padding-top: clamp(76px, 8vw, 16px);
-    padding-bottom: clamp(36px, 5vw, 52px);
+    padding-bottom: 0;
   }
 }
 
@@ -1728,17 +1728,16 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(14px, 3vw, 30px) 0 calc(18px, 2.5vw, 26px);
+  padding: 0;
   color: rgba(255, 248, 236, 0.92);
   background: transparent;
-  min-height: 58px;
-  margin-top: -4px;
+  min-height: clamp(58px, 6vw, 78px);
+  margin-top: 0;
 }
 
 @media (min-width: 1025px) {
   .site-footer {
-    padding: 16px 0 22px;
-    margin-top: -6px;
+    min-height: clamp(64px, 5.2vw, 86px);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   }
 }
