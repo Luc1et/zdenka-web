@@ -62,14 +62,32 @@ const scrollToHashTarget = (hash, { behavior = 'smooth' } = {}) => {
   if (!target) return false;
 
   const headerOffset = getHeaderOffset();
-  const targetRect = target.getBoundingClientRect();
-  const targetTopAbsolute = targetRect.top + window.scrollY;
+  const desktopServicesNudge =
+    hash === '#nabidka' && desktopServicesContactMq.matches ? 14 : 0;
+  const desktopServicesHeading =
+    hash === '#nabidka' && desktopServicesContactMq.matches
+      ? target.querySelector('.section-heading')
+      : null;
+  const desktopAboutHeading =
+    hash === '#omne' && desktopServicesContactMq.matches
+      ? target.querySelector('.section-heading h2')
+      : null;
+  const effectiveTarget = desktopServicesHeading ?? desktopAboutHeading ?? target;
+  const targetRect = effectiveTarget.getBoundingClientRect();
+  const targetTopAbsolute =
+    desktopServicesHeading || desktopAboutHeading
+      ? targetRect.bottom + window.scrollY
+      : targetRect.top + window.scrollY;
   const availableViewportHeight = window.innerHeight - headerOffset;
   const centerOffset = Math.max(
     (availableViewportHeight - targetRect.height) / 2,
     0
   );
-  const targetTop = targetTopAbsolute - headerOffset - centerOffset;
+  const targetTop = desktopServicesHeading
+    ? targetTopAbsolute - headerOffset + desktopServicesNudge
+    : desktopAboutHeading
+      ? targetTopAbsolute - headerOffset
+      : targetTopAbsolute - headerOffset - centerOffset;
   const maxScrollTop =
     document.documentElement.scrollHeight - window.innerHeight;
 

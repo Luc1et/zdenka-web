@@ -1824,20 +1824,20 @@ body.is-header-top .hero {
   position: relative;
   overflow: visible;
   --contact-icon-size: clamp(82px, 10vw, 126px);
+  --contact-icon-lift: 0.8;
+  --contact-item-top-space: 0.6;
 }
 
 @media (min-width: 1025px) {
   .contact-hero-card {
     margin-top: clamp(16px, 2vw, 24px);
     --contact-icon-size: clamp(72px, 8.8vw, 108px);
-  }
-
-  .contact-hero-item {
-    padding-top: calc(var(--contact-icon-size) * 0.5);
+    --contact-icon-lift: 0.68;
+    --contact-item-top-space: 0.5;
   }
 
   .contact-hero-icon {
-    transform: translate(-50%, -68%);
+    transform: translate(-50%, calc(var(--contact-icon-lift) * -100%));
     background: #7b8a6d;
     box-shadow:
       0 8px 20px rgba(24, 34, 31, 0.1),
@@ -1859,7 +1859,7 @@ body.is-header-top .hero {
   justify-items: center;
   text-align: center;
   width: 100%;
-  padding: calc(var(--contact-icon-size) * 0.6) 12px 18px;
+  padding: calc(var(--contact-icon-size) * var(--contact-item-top-space)) 12px 18px;
   margin: 0;
   margin-left: 0;
   color: inherit;
@@ -1875,7 +1875,7 @@ body.is-header-top .hero {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%, -80%);
+  transform: translate(-50%, calc(var(--contact-icon-lift) * -100%));
   display: grid;
   place-items: center;
   width: var(--contact-icon-size);
@@ -1964,6 +1964,10 @@ body.is-header-top .hero {
     --contact-icon-size: clamp(82px, 10vw, 126px);
   }
 
+  .contact-hero-card {
+    --contact-item-top-space: 0.74;
+  }
+
   .contact-split-inner {
     margin-bottom: calc(var(--contact-icon-size) * 0.9);
   }
@@ -1976,7 +1980,6 @@ body.is-header-top .hero {
 
   .contact-hero-item {
     align-content: start;
-    padding-top: calc(var(--contact-icon-size) * 0.74);
   }
 
   .contact-hero-item:nth-child(-n + 2) {
@@ -2548,6 +2551,11 @@ body.is-header-top .hero {
     --contact-footer-space: clamp(44px, 12vw, 56px);
   }
 
+  .contact-hero-card {
+    --contact-icon-lift: 0.72;
+    --contact-item-top-space: 0.88;
+  }
+
   .site-footer {
     height: var(--contact-footer-space);
   }
@@ -2570,7 +2578,6 @@ body.is-header-top .hero {
   }
 
   .contact-hero-item {
-    padding-top: calc(var(--contact-icon-size) * 0.88);
     padding-bottom: calc(var(--contact-icon-size) * 0.88);
   }
 
@@ -2579,7 +2586,7 @@ body.is-header-top .hero {
   }
 
   .contact-hero-icon {
-    transform: translate(-50%, -72%);
+    transform: translate(-50%, calc(var(--contact-icon-lift) * -100%));
   }
 
   .contact-hero-item > :not(.contact-hero-icon) {
