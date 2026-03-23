@@ -616,6 +616,7 @@ body.is-header-top .hero {
 }
 
 .hero-logo-motion {
+  position: relative;
   display: grid;
   place-items: center;
   width: 100%;
@@ -623,6 +624,8 @@ body.is-header-top .hero {
 }
 
 .hero-logo {
+  position: relative;
+  z-index: 1;
   width: calc(100% * var(--hero-logo-fill));
   display: block;
   height: auto;
@@ -631,6 +634,16 @@ body.is-header-top .hero {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   filter: drop-shadow(0 18px 28px rgba(28, 35, 31, 0.18));
+}
+
+.hero-logo-placeholder {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 0;
+  opacity: 0.42;
+  transform: scale(1.08);
+  filter: blur(18px) saturate(1.04);
 }
 
 .btn {
