@@ -370,7 +370,7 @@ const collapseMoreServices = () => {
   }
 };
 
-scheduleDeferredWork(() => {
+const initDeferredFeatures = () => {
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -504,4 +504,8 @@ scheduleDeferredWork(() => {
       window.history.pushState(null, '', '#kontakt');
     });
   });
+};
+
+window.addEventListener('load', () => {
+  scheduleDeferredWork(initDeferredFeatures);
 });
