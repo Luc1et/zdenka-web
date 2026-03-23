@@ -16,6 +16,7 @@ const storyTrigger = document.querySelector('.about-cta-link');
 const storyModal = document.getElementById('pribeh-modal');
 const storyModalDialog = storyModal?.querySelector('.story-modal-dialog');
 const storyModalClose = storyModal?.querySelector('.story-modal-close');
+const coarsePointerMq = window.matchMedia('(pointer: coarse)');
 const supportsFinePointer = window.matchMedia(
   '(hover: hover) and (pointer: fine)'
 ).matches;
@@ -479,6 +480,14 @@ scheduleDeferredWork(() => {
   });
 
   storyModalDialog?.addEventListener('click', (event) => {
+    if (
+      coarsePointerMq.matches &&
+      !event.target.closest('a, button, input, textarea, select, label')
+    ) {
+      requestStoryModalClose();
+      return;
+    }
+
     event.stopPropagation();
   });
 
