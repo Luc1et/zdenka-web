@@ -1393,7 +1393,7 @@ body.is-header-top .hero {
 }
 
 .story-modal-body {
-  padding: 0 clamp(28px, 4vw, 42px) clamp(28px, 4vw, 38px);
+  padding: 20px clamp(28px, 4vw, 42px) clamp(28px, 4vw, 38px);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
@@ -2749,7 +2749,7 @@ body.is-header-top .hero {
   }
 
   .story-modal-body {
-    padding: 0 20px 24px;
+    padding: 16px 20px 24px;
   }
 
   .brand img {
