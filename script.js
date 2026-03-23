@@ -91,9 +91,13 @@ const scrollToHashTarget = (hash, { behavior = 'smooth' } = {}) => {
       : targetTopAbsolute - headerOffset - centerOffset;
   const maxScrollTop =
     document.documentElement.scrollHeight - window.innerHeight;
+  const scrollTop =
+    hash === '#kontakt'
+      ? Math.max(maxScrollTop, 0)
+      : Math.min(Math.max(targetTop, 0), Math.max(maxScrollTop, 0));
 
   window.scrollTo({
-    top: Math.min(Math.max(targetTop, 0), Math.max(maxScrollTop, 0)),
+    top: scrollTop,
     behavior,
   });
 

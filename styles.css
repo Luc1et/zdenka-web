@@ -2570,6 +2570,14 @@ body.is-header-top .hero {
     --header-h: 56px;
   }
 
+  body::before,
+  body::after,
+  .page-glow,
+  .noise-layer,
+  .cursor-aura {
+    display: none;
+  }
+
   .section {
     padding: 62px 0;
   }
@@ -2633,6 +2641,14 @@ body.is-header-top .hero {
     padding-bottom: clamp(18px, 4.5svh, 32px);
   }
 
+  .hero-backdrop::after {
+    background: linear-gradient(
+      180deg,
+      rgba(244, 232, 202, 0.16),
+      rgba(11, 24, 20, 0.26)
+    );
+  }
+
   .hero-inner {
     gap: clamp(12px, 2svh, 20px);
   }
@@ -2645,6 +2661,15 @@ body.is-header-top .hero {
   .hero-logo-wrap {
     width: clamp(182px, calc((100svh - var(--header-h)) * 0.37), 388px);
     height: clamp(182px, calc((100svh - var(--header-h)) * 0.37), 388px);
+    box-shadow: 0 18px 42px rgba(7, 12, 11, 0.22);
+    background:
+      radial-gradient(
+        circle at center,
+        rgba(255, 252, 244, 0.94) 0 30%,
+        rgba(255, 245, 221, 0.58) 42%,
+        rgba(255, 255, 255, 0.02) 68%
+      ),
+      radial-gradient(circle at center, rgba(201, 160, 75, 0.28), transparent 70%);
   }
 
   .hero h1 {
