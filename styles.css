@@ -2583,6 +2583,14 @@ body.is-header-top .hero {
     --header-h: 56px;
   }
 
+  .hero-backdrop {
+    background-image: url("img/dark-green-background-mobile.webp");
+  }
+
+  .ambience-panel-bg {
+    background-image: url("img/foto-maserna-mobile.webp");
+  }
+
   body::before,
   body::after,
   .page-glow,
