@@ -502,17 +502,13 @@ main {
 .hero {
   position: relative;
   overflow: hidden;
+  margin-top: calc(var(--header-h) * -1);
   padding-top: 0px;
   padding-bottom: 0;
-  min-height: calc(100svh - var(--header-h));
+  min-height: 100svh;
   scroll-margin-top: var(--header-h);
   display: flex;
   align-items: center;
-}
-
-body.is-header-top .hero {
-  margin-top: calc(var(--header-h) * -1);
-  min-height: 100svh;
 }
 
 .hero::before {
