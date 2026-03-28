@@ -62,7 +62,7 @@
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 18px;
-  --container: min(1180px, calc(100vw - 32px));
+  --container: min(1180px, calc(100% - 32px));
   --header-h: 64px;
 }
 
@@ -246,9 +246,7 @@ body.pointer-ready .cursor-aura {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  width: auto;
-  overflow-x: clip;
+  width: 100%;
   z-index: 1000;
   background: transparent;
   opacity: 1;
@@ -262,7 +260,8 @@ body.pointer-ready .cursor-aura {
 
 .header-bar {
   position: relative;
-  overflow-x: clip;
+  width: 100vw;
+  max-width: 100%;
 }
 
 .header-shell {
@@ -2282,10 +2281,10 @@ main {
   .site-nav {
     position: fixed;
     top: calc(var(--header-h) + 10px);
-    left: 14px;
-    right: 14px;
-    width: auto;
-    transform: translateY(-10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+
+    width: calc(100vw - 28px);
 
     z-index: 2000;
 
@@ -2313,7 +2312,7 @@ main {
   .site-header.menu-open .site-nav {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 
   .site-nav a {
