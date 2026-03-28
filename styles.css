@@ -2246,6 +2246,17 @@ main {
     --header-h: 60px;
   }
 
+  .site-header {
+    transform: none;
+  }
+
+  .site-header.is-top:not(.menu-open) {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
   .header-shell {
     width: 100%;
     padding: 7px 14px;
