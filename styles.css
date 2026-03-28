@@ -246,7 +246,8 @@ body.pointer-ready .cursor-aura {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  width: auto;
   z-index: 1000;
   background: transparent;
   opacity: 1;
@@ -260,7 +261,6 @@ body.pointer-ready .cursor-aura {
 
 .header-bar {
   position: relative;
-  width: 100%;
 }
 
 .header-shell {
