@@ -248,6 +248,7 @@ body.pointer-ready .cursor-aura {
   left: 0;
   right: 0;
   width: auto;
+  overflow-x: clip;
   z-index: 1000;
   background: transparent;
   opacity: 1;
@@ -261,6 +262,7 @@ body.pointer-ready .cursor-aura {
 
 .header-bar {
   position: relative;
+  overflow-x: clip;
 }
 
 .header-shell {
@@ -2280,10 +2282,10 @@ main {
   .site-nav {
     position: fixed;
     top: calc(var(--header-h) + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-
-    width: calc(100vw - 28px);
+    left: 14px;
+    right: 14px;
+    width: auto;
+    transform: translateY(-10px);
 
     z-index: 2000;
 
@@ -2311,7 +2313,7 @@ main {
   .site-header.menu-open .site-nav {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
 
   .site-nav a {
