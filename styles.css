@@ -1538,8 +1538,7 @@ main {
 }
 
 .certificate-card {
-  display: grid;
-  gap: 14px;
+  display: block;
   margin: 0;
   padding: 0;
   width: min(100%, 280px);
@@ -1558,22 +1557,154 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1.414;
   object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 14px 28px rgba(24, 34, 31, 0.1);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .certificate-card span {
-  color: var(--green);
-  font-weight: 700;
-  line-height: 1.45;
+  display: none;
 }
 
 .certificate-card:hover,
 .certificate-card:focus-visible {
-  transform: translateY(-3px);
-  border-color: transparent;
-  box-shadow: none;
+  transform: none;
   outline: none;
+}
+
+.certificate-detail-dialog {
+  width: min(92vw, 980px);
+  max-height: 92vh;
+  display: grid;
+  justify-items: center;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.certificate-detail-modal {
+  z-index: 1410;
+}
+
+.certificate-detail-modal .story-modal-backdrop {
+  background: rgba(17, 28, 24, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.certificate-detail-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(calc(-100% - 12px));
+}
+
+.certificate-detail-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(10px, 2vw, 22px);
+  width: 100%;
+}
+
+.certificate-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.certificate-carousel-track {
+  display: flex;
+  width: 300%;
+  transform: translateX(-33.333333%);
+}
+
+.certificate-carousel-track.is-sliding-next {
+  transition: transform 0.42s ease;
+  transform: translateX(-66.666667%);
+}
+
+.certificate-carousel-track.is-sliding-prev {
+  transition: transform 0.42s ease;
+  transform: translateX(0%);
+}
+
+.certificate-carousel-slide {
+  display: grid;
+  place-items: center;
+  width: 33.333333%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  margin: 0;
+}
+
+.certificate-carousel-slide[data-certificate-slide="prev"],
+.certificate-carousel-slide[data-certificate-slide="next"] {
+  cursor: pointer;
+  transition:
+    transform 0.28s ease,
+    opacity 0.28s ease,
+    filter 0.28s ease;
+}
+
+.certificate-carousel-slide[data-certificate-slide="prev"] {
+  transform: scale(0.72);
+  opacity: 0.82;
+  filter: saturate(0.92);
+}
+
+.certificate-carousel-slide[data-certificate-slide="current"] {
+  transform: scale(1);
+}
+
+.certificate-carousel-slide[data-certificate-slide="next"] {
+  transform: scale(0.72);
+  opacity: 0.82;
+  filter: saturate(0.92);
+}
+
+.certificate-carousel-slide:focus-visible,
+.certificate-carousel-arrow:focus-visible {
+  outline: none;
+}
+
+.certificate-carousel-image {
+  display: block;
+  width: min(100%, 720px);
+  max-height: 84vh;
+  height: auto;
+  object-fit: contain;
+}
+
+.certificate-carousel-arrow {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(18, 24, 22, 0.22);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.certificate-carousel-arrow span {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.certificate-carousel-arrow:hover,
+.certificate-carousel-arrow:focus-visible {
+  transform: scale(1.04);
+  background: rgba(18, 24, 22, 0.34);
+  border-color: rgba(255, 255, 255, 0.32);
 }
 
 .story-modal-dialog:focus-visible,
@@ -2958,6 +3089,38 @@ main {
   .certificate-card {
     padding: 0;
     border-radius: 0;
+  }
+
+  .certificate-detail-dialog {
+    width: min(94vw, 720px);
+  }
+
+  .certificate-detail-close {
+    top: 14px;
+    right: 14px;
+    transform: none;
+  }
+
+  .certificate-detail-stage {
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+    gap: 8px;
+  }
+
+  .certificate-carousel-slide[data-certificate-slide="prev"] {
+    transform: scale(0.62);
+  }
+
+  .certificate-carousel-slide[data-certificate-slide="next"] {
+    transform: scale(0.62);
+  }
+
+  .certificate-carousel-image {
+    max-height: 76vh;
+  }
+
+  .certificate-carousel-arrow {
+    width: 40px;
+    height: 40px;
   }
 
   .brand img {

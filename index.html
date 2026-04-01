@@ -709,8 +709,7 @@
             <span class="eyebrow">Certifikáty</span>
             <h2 id="certificates-modal-title">Kurzy a osvědčení</h2>
             <p id="certificates-modal-intro">
-              Přehled kurzů, které tvoří základ mé praxe. Každý certifikát lze
-              otevřít i samostatně.
+              Přehled kurzů, které tvoří základ mé praxe. 
             </p>
           </div>
 
@@ -728,12 +727,11 @@
           <div class="certificates-gallery">
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/triggerpoints.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/triggerpoints.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/triggerpoints.png"
+                src="img/certifikaty/cert-ram/triggerpoints.png"
                 alt="Certifikát: Trigger points"
                 loading="lazy"
                 decoding="async"
@@ -743,12 +741,11 @@
 
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/reflexni-terapie.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/reflexni-terapie.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/reflexni-terapie.png"
+                src="img/certifikaty/cert-ram/reflexni-terapie.png"
                 alt="Certifikát: Reflexní terapie"
                 loading="lazy"
                 decoding="async"
@@ -758,12 +755,11 @@
 
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/masaz-obliceje.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/masaz-obliceje.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/masaz-obliceje.png"
+                src="img/certifikaty/cert-ram/masaz-obliceje.png"
                 alt="Certifikát: Lymfatická masáž obličeje"
                 loading="lazy"
                 decoding="async"
@@ -773,12 +769,11 @@
 
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/tejpovani-zakladni-kurz.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/tejpovani-zakladni-kurz.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/tejpovani-zakladni-kurz.png"
+                src="img/certifikaty/cert-ram/tejpovani-zakladni-kurz.png"
                 alt="Certifikát: Tejpování základní kurz"
                 loading="lazy"
                 decoding="async"
@@ -788,12 +783,11 @@
 
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/tejpovani-navazujici-kurz.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/tejpovani-navazujici-kurz.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/tejpovani-navazujici-kurz.png"
+                src="img/certifikaty/cert-ram/tejpovani-navazujici-kurz.png"
                 alt="Certifikát: Tejpování navazující kurz"
                 loading="lazy"
                 decoding="async"
@@ -803,12 +797,11 @@
 
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/neurotejpovani.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/neurotejpovani.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/neurotejpovani.png"
+                src="img/certifikaty/cert-ram/neurotejpovani.png"
                 alt="Certifikát: Neurotejpování"
                 loading="lazy"
                 decoding="async"
@@ -818,12 +811,11 @@
 
             <a
               class="certificate-card"
-              href="certifikaty/cert-ram/ter-prace-zvuk.png"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="img/certifikaty/cert-ram/ter-prace-zvuk.png"
+              data-certificate-detail
             >
               <img
-                src="certifikaty/cert-ram/ter-prace-zvuk.png"
+                src="img/certifikaty/cert-ram/ter-prace-zvuk.png"
                 alt="Certifikát: Terapie prací se zvukem"
                 loading="lazy"
                 decoding="async"
@@ -832,6 +824,87 @@
             </a>
 
           </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="story-modal certificate-detail-modal" id="certifikat-detail-modal" hidden>
+      <div class="story-modal-backdrop" data-certificate-detail-close></div>
+      <section
+        class="story-modal-dialog certificate-detail-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="certificate-detail-title"
+        tabindex="-1"
+      >
+        <h2 class="sr-only" id="certificate-detail-title">Detail certifikátu</h2>
+        <button
+          class="story-modal-close certificate-detail-close"
+          type="button"
+          data-certificate-detail-close
+          aria-label="Zavřít detail certifikátu"
+        >
+          Zavřít
+        </button>
+        <div class="certificate-detail-stage">
+          <button
+            class="certificate-carousel-arrow certificate-carousel-arrow-prev"
+            type="button"
+            data-certificate-prev
+            aria-label="Předchozí certifikát"
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+          <div class="certificate-carousel-viewport">
+            <div class="certificate-carousel-track">
+              <button
+                class="certificate-carousel-slide"
+                type="button"
+                data-certificate-slide="prev"
+                aria-label="Předchozí certifikát"
+              >
+                <img
+                  class="certificate-carousel-image"
+                  src=""
+                  alt=""
+                  decoding="async"
+                />
+              </button>
+              <div
+                class="certificate-carousel-slide"
+                data-certificate-slide="current"
+                aria-hidden="true"
+              >
+                <img
+                  class="certificate-carousel-image"
+                  src=""
+                  alt=""
+                  decoding="async"
+                />
+              </div>
+              <button
+                class="certificate-carousel-slide"
+                type="button"
+                data-certificate-slide="next"
+                aria-label="Další certifikát"
+              >
+                <img
+                  class="certificate-carousel-image"
+                  src=""
+                  alt=""
+                  decoding="async"
+                />
+              </button>
+            </div>
+          </div>
+          <button
+            class="certificate-carousel-arrow certificate-carousel-arrow-next"
+            type="button"
+            data-certificate-next
+            aria-label="Další certifikát"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
         </div>
       </section>
     </div>

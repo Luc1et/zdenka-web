@@ -19,6 +19,30 @@ const certificatesModalDialog =
   certificatesModal?.querySelector('.story-modal-dialog');
 const certificatesModalClose =
   certificatesModal?.querySelector('.story-modal-close');
+const certificateDetailModal = document.getElementById('certifikat-detail-modal');
+const certificateDetailDialog =
+  certificateDetailModal?.querySelector('.story-modal-dialog');
+const certificateDetailClose =
+  certificateDetailModal?.querySelector('.story-modal-close');
+const certificateCarouselTrack =
+  certificateDetailModal?.querySelector('.certificate-carousel-track');
+const certificateCarouselPrev =
+  certificateDetailModal?.querySelector('[data-certificate-slide="prev"]');
+const certificateCarouselCurrent =
+  certificateDetailModal?.querySelector('[data-certificate-slide="current"]');
+const certificateCarouselNext =
+  certificateDetailModal?.querySelector('[data-certificate-slide="next"]');
+const certificateCarouselPrevImage =
+  certificateCarouselPrev?.querySelector('.certificate-carousel-image');
+const certificateCarouselCurrentImage =
+  certificateCarouselCurrent?.querySelector('.certificate-carousel-image');
+const certificateCarouselNextImage =
+  certificateCarouselNext?.querySelector('.certificate-carousel-image');
+const certificateDetailPrev =
+  certificateDetailModal?.querySelector('[data-certificate-prev]');
+const certificateDetailNext =
+  certificateDetailModal?.querySelector('[data-certificate-next]');
+const certificateLinks = document.querySelectorAll('[data-certificate-detail]');
 const storyModal = document.getElementById('pribeh-modal');
 const storyModalDialog = storyModal?.querySelector('.story-modal-dialog');
 const storyModalClose = storyModal?.querySelector('.story-modal-close');
@@ -39,15 +63,20 @@ const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
 let storyModalScrollY = 0;
-let modalLastFocused = null;
 let storyModalOpenedViaTrigger = false;
 let storyModalCanGoBack = false;
 let headerPointerReveal = false;
+let activeCertificateIndex = -1;
+let isCertificateCarouselAnimating = false;
+const CERTIFICATE_CAROUSEL_DURATION = 420;
 
 const getHeaderOffset = () => header?.getBoundingClientRect().height ?? 0;
 const isModalOpen = (modal) => modal?.classList.contains('is-open');
-const getOpenModal = () =>
-  document.querySelector('.story-modal.is-open');
+const getOpenModal = () => {
+  const openModals = [...document.querySelectorAll('.story-modal.is-open')];
+
+  return openModals.at(-1) ?? null;
+};
 const isStoryModalOpen = () => isModalOpen(storyModal);
 
 const syncHeaderTopState = (isTop) => {
@@ -155,7 +184,7 @@ const openModal = (modal, trigger = document.activeElement) => {
   if (!modal || isModalOpen(modal)) return;
 
   window.clearTimeout(modal.hideTimer);
-  modalLastFocused = trigger ?? document.activeElement;
+  modal.returnFocusTo = trigger ?? document.activeElement;
   lockBodyScroll();
   togglePageInert(true);
   modal.hidden = false;
@@ -171,15 +200,18 @@ const closeModal = (modal, { restoreFocus = true } = {}) => {
   if (!modal || !isModalOpen(modal)) return;
 
   modal.classList.remove('is-open');
-  togglePageInert(false);
-  unlockBodyScroll();
 
   modal.hideTimer = window.setTimeout(() => {
     modal.hidden = true;
   }, 320);
 
-  if (restoreFocus && modalLastFocused instanceof HTMLElement) {
-    modalLastFocused.focus({ preventScroll: true });
+  if (!document.querySelector('.story-modal.is-open')) {
+    togglePageInert(false);
+    unlockBodyScroll();
+  }
+
+  if (restoreFocus && modal.returnFocusTo instanceof HTMLElement) {
+    modal.returnFocusTo.focus({ preventScroll: true });
   }
 };
 
@@ -201,6 +233,90 @@ const closeCertificatesModal = ({ restoreFocus = true } = {}) => {
   closeModal(certificatesModal, { restoreFocus });
 };
 
+const wrapCertificateIndex = (index) =>
+  (index + certificateLinks.length) % certificateLinks.length;
+
+const setCertificateSlide = (imageElement, certificateIndex) => {
+  if (!imageElement || certificateIndex < 0) return;
+
+  const certificateLink = certificateLinks[certificateIndex];
+  const sourceImage = certificateLink?.querySelector('img');
+
+  if (!certificateLink || !sourceImage) return;
+
+  imageElement.src = certificateLink.getAttribute('href') ?? '';
+  imageElement.alt = sourceImage.getAttribute('alt') ?? '';
+};
+
+const renderCertificateCarousel = () => {
+  if (
+    activeCertificateIndex < 0 ||
+    !certificateCarouselPrevImage ||
+    !certificateCarouselCurrentImage ||
+    !certificateCarouselNextImage
+  ) {
+    return;
+  }
+
+  setCertificateSlide(
+    certificateCarouselPrevImage,
+    wrapCertificateIndex(activeCertificateIndex - 1)
+  );
+  setCertificateSlide(certificateCarouselCurrentImage, activeCertificateIndex);
+  setCertificateSlide(
+    certificateCarouselNextImage,
+    wrapCertificateIndex(activeCertificateIndex + 1)
+  );
+
+  certificateCarouselTrack?.classList.remove(
+    'is-sliding-next',
+    'is-sliding-prev'
+  );
+};
+
+const openCertificateDetailModal = (trigger) => {
+  if (!certificateCarouselTrack) return;
+
+  activeCertificateIndex = [...certificateLinks].indexOf(trigger);
+  renderCertificateCarousel();
+  openModal(certificateDetailModal, trigger);
+};
+
+const closeCertificateDetailModal = ({ restoreFocus = true } = {}) => {
+  closeModal(certificateDetailModal, { restoreFocus });
+  activeCertificateIndex = -1;
+  isCertificateCarouselAnimating = false;
+  certificateCarouselTrack?.classList.remove('is-sliding-next', 'is-sliding-prev');
+  [certificateCarouselPrevImage, certificateCarouselCurrentImage, certificateCarouselNextImage].forEach((image) => {
+    if (!image) return;
+    image.src = '';
+    image.alt = '';
+  });
+};
+
+const showAdjacentCertificate = (direction) => {
+  if (
+    !certificateLinks.length ||
+    activeCertificateIndex < 0 ||
+    isCertificateCarouselAnimating ||
+    !certificateCarouselTrack
+  ) {
+    return;
+  }
+
+  isCertificateCarouselAnimating = true;
+  certificateCarouselTrack.classList.add(
+    direction > 0 ? 'is-sliding-next' : 'is-sliding-prev'
+  );
+
+  window.setTimeout(() => {
+    activeCertificateIndex = wrapCertificateIndex(activeCertificateIndex + direction);
+    renderCertificateCarousel();
+    certificateDetailModal.returnFocusTo = certificateLinks[activeCertificateIndex];
+    isCertificateCarouselAnimating = false;
+  }, CERTIFICATE_CAROUSEL_DURATION);
+};
+
 const requestStoryModalClose = () => {
   if (!storyModal) return;
 
@@ -219,6 +335,10 @@ const requestStoryModalClose = () => {
 
 const requestCertificatesModalClose = () => {
   closeCertificatesModal();
+};
+
+const requestCertificateDetailModalClose = () => {
+  closeCertificateDetailModal();
 };
 
 const syncStoryModalWithHash = ({ restoreFocus = true } = {}) => {
@@ -343,8 +463,8 @@ document.addEventListener('keydown', (event) => {
   }
 
   if (event.key === 'Escape') {
-    if (isStoryModalOpen()) {
-      requestStoryModalClose();
+    if (isModalOpen(certificateDetailModal)) {
+      requestCertificateDetailModalClose();
       return;
     }
 
@@ -353,9 +473,27 @@ document.addEventListener('keydown', (event) => {
       return;
     }
 
+    if (isStoryModalOpen()) {
+      requestStoryModalClose();
+      return;
+    }
+
     header.classList.remove('menu-open');
     menuToggle?.setAttribute('aria-expanded', 'false');
     updateHeaderTopState();
+  }
+
+  if (isModalOpen(certificateDetailModal)) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      showAdjacentCertificate(-1);
+      return;
+    }
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      showAdjacentCertificate(1);
+    }
   }
 });
 
@@ -524,6 +662,45 @@ const initDeferredFeatures = () => {
   });
 
   certificatesModalDialog?.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+
+  certificateLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      openCertificateDetailModal(link);
+    });
+  });
+
+  certificateDetailModal?.addEventListener('click', (event) => {
+    const closeTrigger = event.target.closest('[data-certificate-detail-close]');
+
+    if (closeTrigger || event.target === certificateDetailModal) {
+      requestCertificateDetailModalClose();
+    }
+  });
+
+  certificateDetailClose?.addEventListener('click', () => {
+    requestCertificateDetailModalClose();
+  });
+
+  certificateDetailPrev?.addEventListener('click', () => {
+    showAdjacentCertificate(-1);
+  });
+
+  certificateDetailNext?.addEventListener('click', () => {
+    showAdjacentCertificate(1);
+  });
+
+  certificateCarouselPrev?.addEventListener('click', () => {
+    showAdjacentCertificate(-1);
+  });
+
+  certificateCarouselNext?.addEventListener('click', () => {
+    showAdjacentCertificate(1);
+  });
+
+  certificateDetailDialog?.addEventListener('click', (event) => {
     event.stopPropagation();
   });
 
