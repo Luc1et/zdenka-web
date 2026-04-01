@@ -13,6 +13,12 @@ const serviceBookingLinks = document.querySelectorAll(
   '#nabidka .service-footer a[href^="tel:"]'
 );
 const storyTrigger = document.querySelector('.about-cta-link');
+const certificatesTrigger = document.querySelector('[data-certificates-open]');
+const certificatesModal = document.getElementById('certifikaty-modal');
+const certificatesModalDialog =
+  certificatesModal?.querySelector('.story-modal-dialog');
+const certificatesModalClose =
+  certificatesModal?.querySelector('.story-modal-close');
 const storyModal = document.getElementById('pribeh-modal');
 const storyModalDialog = storyModal?.querySelector('.story-modal-dialog');
 const storyModalClose = storyModal?.querySelector('.story-modal-close');
@@ -33,14 +39,16 @@ const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
 let storyModalScrollY = 0;
-let storyModalLastFocused = null;
+let modalLastFocused = null;
 let storyModalOpenedViaTrigger = false;
 let storyModalCanGoBack = false;
-let storyModalHideTimer = 0;
 let headerPointerReveal = false;
 
 const getHeaderOffset = () => header?.getBoundingClientRect().height ?? 0;
-const isStoryModalOpen = () => storyModal?.classList.contains('is-open');
+const isModalOpen = (modal) => modal?.classList.contains('is-open');
+const getOpenModal = () =>
+  document.querySelector('.story-modal.is-open');
+const isStoryModalOpen = () => isModalOpen(storyModal);
 
 const syncHeaderTopState = (isTop) => {
   header?.classList.toggle('is-top', isTop);
@@ -135,47 +143,62 @@ const togglePageInert = (isInert) => {
   if (main) main.inert = isInert;
 };
 
-const getStoryModalFocusable = () => {
-  if (!storyModal) return [];
+const getModalFocusable = (modal) => {
+  if (!modal) return [];
 
-  return [...storyModal.querySelectorAll(FOCUSABLE_SELECTOR)].filter(
+  return [...modal.querySelectorAll(FOCUSABLE_SELECTOR)].filter(
     (item) => !item.hasAttribute('disabled') && !item.getAttribute('aria-hidden')
   );
 };
 
-const openStoryModal = (trigger = storyTrigger) => {
-  if (!storyModal || isStoryModalOpen()) return;
+const openModal = (modal, trigger = document.activeElement) => {
+  if (!modal || isModalOpen(modal)) return;
 
-  window.clearTimeout(storyModalHideTimer);
-  storyModalLastFocused = trigger ?? document.activeElement;
+  window.clearTimeout(modal.hideTimer);
+  modalLastFocused = trigger ?? document.activeElement;
   lockBodyScroll();
   togglePageInert(true);
-  storyModal.hidden = false;
+  modal.hidden = false;
 
   window.requestAnimationFrame(() => {
-    storyModal.classList.add('is-open');
-    storyModalDialog?.focus();
-    storyModalClose?.focus();
+    modal.classList.add('is-open');
+    modal.querySelector('.story-modal-dialog')?.focus();
+    modal.querySelector('.story-modal-close')?.focus();
   });
 };
 
-const closeStoryModal = ({ restoreFocus = true } = {}) => {
-  if (!storyModal || !isStoryModalOpen()) return;
+const closeModal = (modal, { restoreFocus = true } = {}) => {
+  if (!modal || !isModalOpen(modal)) return;
 
-  storyModal.classList.remove('is-open');
+  modal.classList.remove('is-open');
   togglePageInert(false);
   unlockBodyScroll();
 
-  storyModalHideTimer = window.setTimeout(() => {
-    storyModal.hidden = true;
+  modal.hideTimer = window.setTimeout(() => {
+    modal.hidden = true;
   }, 320);
 
-  if (restoreFocus && storyModalLastFocused instanceof HTMLElement) {
-    storyModalLastFocused.focus({ preventScroll: true });
+  if (restoreFocus && modalLastFocused instanceof HTMLElement) {
+    modalLastFocused.focus({ preventScroll: true });
   }
+};
 
+const openStoryModal = (trigger = storyTrigger) => {
+  openModal(storyModal, trigger);
+};
+
+const closeStoryModal = ({ restoreFocus = true } = {}) => {
+  closeModal(storyModal, { restoreFocus });
   storyModalOpenedViaTrigger = false;
   storyModalCanGoBack = false;
+};
+
+const openCertificatesModal = (trigger = certificatesTrigger) => {
+  openModal(certificatesModal, trigger);
+};
+
+const closeCertificatesModal = ({ restoreFocus = true } = {}) => {
+  closeModal(certificatesModal, { restoreFocus });
 };
 
 const requestStoryModalClose = () => {
@@ -192,6 +215,10 @@ const requestStoryModalClose = () => {
   }
 
   closeStoryModal();
+};
+
+const requestCertificatesModalClose = () => {
+  closeCertificatesModal();
 };
 
 const syncStoryModalWithHash = ({ restoreFocus = true } = {}) => {
@@ -289,12 +316,16 @@ hashLinks.forEach((link) => {
 });
 
 document.addEventListener('keydown', (event) => {
-  if (isStoryModalOpen() && event.key === 'Tab') {
-    const focusable = getStoryModalFocusable();
+  const openModalElement = getOpenModal();
+
+  if (openModalElement && event.key === 'Tab') {
+    const focusable = getModalFocusable(openModalElement);
+    const openModalDialog =
+      openModalElement.querySelector('.story-modal-dialog');
 
     if (!focusable.length) {
       event.preventDefault();
-      storyModalDialog?.focus();
+      openModalDialog?.focus();
       return;
     }
 
@@ -314,6 +345,11 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     if (isStoryModalOpen()) {
       requestStoryModalClose();
+      return;
+    }
+
+    if (isModalOpen(certificatesModal)) {
+      requestCertificatesModalClose();
       return;
     }
 
@@ -470,6 +506,26 @@ const initDeferredFeatures = () => {
       scrollToHashTarget('#sluzba-dalsi');
     });
   }
+
+  certificatesTrigger?.addEventListener('click', () => {
+    openCertificatesModal(certificatesTrigger);
+  });
+
+  certificatesModal?.addEventListener('click', (event) => {
+    const closeTrigger = event.target.closest('[data-modal-close]');
+
+    if (closeTrigger || event.target === certificatesModal) {
+      requestCertificatesModalClose();
+    }
+  });
+
+  certificatesModalClose?.addEventListener('click', () => {
+    requestCertificatesModalClose();
+  });
+
+  certificatesModalDialog?.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
 
   storyModal?.addEventListener('click', (event) => {
     const closeTrigger = event.target.closest('[data-story-close]');

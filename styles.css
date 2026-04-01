@@ -973,6 +973,9 @@ main {
   padding: 36px;
   display: grid;
   align-items: end;
+  box-shadow: 0 11px 30px rgba(20, 28, 25, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 @media (min-width: 1025px) {
@@ -1023,7 +1026,7 @@ main {
   position: absolute;
   inset: 0;
 
-  background-image: url("img/foto-maserna.webp");
+  background-image: url("img/maserna-foto/maserna-feel.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1034,10 +1037,10 @@ main {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 247, 226, 0.18), rgba(12, 24, 21, 0.5)),
+    linear-gradient(180deg, rgba(255, 247, 226, 0.09), rgba(12, 24, 21, 0.25)),
     radial-gradient(
       circle at 50% 15%,
-      rgba(255, 240, 206, 0.34),
+      rgba(255, 240, 206, 0.17),
       transparent 0 18%
     );
 }
@@ -1140,11 +1143,43 @@ main {
   aspect-ratio: 1;
 }
 
+.about-certificates-trigger {
+  position: relative;
+  display: block;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  background: transparent;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
 .about-visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 18%;
+}
+
+.about-certificates-trigger img {
+  filter: saturate(0.96);
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.about-certificates-trigger:hover,
+.about-certificates-trigger:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 54px rgba(24, 34, 31, 0.14);
+  outline: none;
+}
+
+.about-certificates-trigger:hover img,
+.about-certificates-trigger:focus-visible img {
+  transform: scale(1.03);
+  filter: saturate(1);
 }
 
 .about-timeline-card {
@@ -1480,6 +1515,65 @@ main {
 .story-modal-signoff {
   color: var(--green);
   font-weight: 700;
+}
+
+.certificates-modal-dialog {
+  width: min(1100px, 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(252, 252, 252, 0.92)
+  );
+}
+
+.certificates-modal-body {
+  padding-top: 12px;
+}
+
+.certificates-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+  justify-content: center;
+  gap: 20px;
+}
+
+.certificate-card {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  width: min(100%, 280px);
+  justify-self: center;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.certificate-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1.414;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 14px 28px rgba(24, 34, 31, 0.1);
+}
+
+.certificate-card span {
+  color: var(--green);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.certificate-card:hover,
+.certificate-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
 }
 
 .story-modal-dialog:focus-visible,
@@ -2235,6 +2329,10 @@ main {
   .about-cta {
     justify-content: center;
   }
+
+  .certificates-gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 980px) {
@@ -2447,7 +2545,7 @@ main {
   }
 
   .hero {
-    min-height: calc(100svh - var(--header-h));
+    min-height: 100svh;
     align-items: stretch;
     flex-direction: column;
     padding-top: clamp(12px, 4svh, 28px);
@@ -2619,7 +2717,7 @@ main {
   }
 
   .ambience-panel-bg {
-    background-image: url("img/foto-maserna-mobile.webp");
+    background-image: url("img/maserna-foto/maserna-feel.png");
   }
 
   body::before,
@@ -2687,7 +2785,7 @@ main {
   }
 
   .hero {
-    min-height: calc(100svh - var(--header-h));
+    min-height: 100svh;
     align-items: flex-start;
     padding-top: clamp(12px, 4svh, 24px);
     padding-bottom: clamp(18px, 4.5svh, 32px);
@@ -2850,6 +2948,16 @@ main {
 
   .story-modal-body {
     padding: 16px 20px 24px;
+  }
+
+  .certificates-gallery {
+    grid-template-columns: minmax(220px, 280px);
+    gap: 16px;
+  }
+
+  .certificate-card {
+    padding: 0;
+    border-radius: 0;
   }
 
   .brand img {

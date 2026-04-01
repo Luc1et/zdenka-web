@@ -423,15 +423,21 @@
               </div>
             </article>
 
-            <figure class="glass-card about-visual">
+            <button
+              class="glass-card about-visual about-certificates-trigger"
+              type="button"
+              data-certificates-open
+              aria-haspopup="dialog"
+              aria-controls="certifikaty-modal"
+            >
               <img
-                src="img/zdenka-portret.webp"
-                alt="Zdeňka Mahdalová ve svém studiu"
+                src="certifikaty-nahled.png"
+                alt="Náhled certifikátů Zdeňky Mahdalové"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
               />
-            </figure>
+            </button>
           </div>
 
           <div class="glass-card about-timeline-card reveal reveal-delay-2">
@@ -687,6 +693,148 @@
         </section>
       </div>
     </main>
+
+    <div class="story-modal certificates-modal" id="certifikaty-modal" hidden>
+      <div class="story-modal-backdrop" data-modal-close></div>
+      <section
+        class="story-modal-dialog certificates-modal-dialog glass-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="certificates-modal-title"
+        aria-describedby="certificates-modal-intro"
+        tabindex="-1"
+      >
+        <div class="story-modal-header">
+          <div class="story-modal-heading">
+            <span class="eyebrow">Certifikáty</span>
+            <h2 id="certificates-modal-title">Kurzy a osvědčení</h2>
+            <p id="certificates-modal-intro">
+              Přehled kurzů, které tvoří základ mé praxe. Každý certifikát lze
+              otevřít i samostatně.
+            </p>
+          </div>
+
+          <button
+            class="story-modal-close"
+            type="button"
+            data-modal-close
+            aria-label="Zavřít certifikáty"
+          >
+            Zavřít
+          </button>
+        </div>
+
+        <div class="story-modal-body certificates-modal-body">
+          <div class="certificates-gallery">
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/masaz-obliceje.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/masaz-obliceje.png"
+                alt="Certifikát: Lymfatická masáž obličeje"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Lymfatická masáž obličeje</span>
+            </a>
+
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/tejpovani-zakladni-kurz.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/tejpovani-zakladni-kurz.png"
+                alt="Certifikát: Tejpování základní kurz"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Tejpování, základní kurz</span>
+            </a>
+
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/tejpovani-navazujici-kurz.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/tejpovani-navazujici-kurz.png"
+                alt="Certifikát: Tejpování navazující kurz"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Tejpování, navazující kurz</span>
+            </a>
+
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/reflexni-terapie.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/reflexni-terapie.png"
+                alt="Certifikát: Reflexní terapie"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Reflexní terapie plosky nohy</span>
+            </a>
+
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/neurotejpovani.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/neurotejpovani.png"
+                alt="Certifikát: Neurotejpování"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Neurotejpování</span>
+            </a>
+
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/triggerpoints.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/triggerpoints.png"
+                alt="Certifikát: Trigger points"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Trigger points</span>
+            </a>
+
+            <a
+              class="certificate-card"
+              href="certifikaty/cert-ram/ter-prace-zvuk.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="certifikaty/cert-ram/ter-prace-zvuk.png"
+                alt="Certifikát: Terapie prací se zvukem"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Terapie prací se zvukem</span>
+            </a>
+
+          </div>
+        </div>
+      </section>
+    </div>
 
     <div class="story-modal" id="pribeh-modal" hidden>
       <div class="story-modal-backdrop" data-story-close></div>
