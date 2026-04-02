@@ -240,11 +240,15 @@ const wrapCertificateIndex = (index) =>
 const getCertificateCarouselSlides = () =>
   [...certificateCarouselTrack?.querySelectorAll('.certificate-carousel-slide') ?? []];
 
+const getRealCertificateSlides = () =>
+  getCertificateCarouselSlides().filter(
+    (slide) => slide.dataset.certificateClone !== 'true'
+  );
+
 const buildCertificateCarousel = () => {
   if (!certificateCarouselTrack || certificateCarouselTrack.childElementCount) return;
 
-  const slidesMarkup = [...certificateLinks]
-    .map((link, index) => {
+  const createSlideMarkup = (link, index, { isClone = false } = {}) => {
       const image = link.querySelector('img');
       const src = link.getAttribute('href') ?? '';
       const alt = image?.getAttribute('alt') ?? 'Certifikát';
@@ -254,6 +258,7 @@ const buildCertificateCarousel = () => {
           class="certificate-carousel-slide"
           type="button"
           data-certificate-index="${index}"
+          data-certificate-clone="${isClone ? 'true' : 'false'}"
           aria-label="${alt}"
         >
           <img
@@ -264,8 +269,15 @@ const buildCertificateCarousel = () => {
           />
         </button>
       `;
-    })
-    .join('');
+    };
+
+  const firstLink = certificateLinks[0];
+  const lastLink = certificateLinks[certificateLinks.length - 1];
+  const slidesMarkup = [
+    lastLink ? createSlideMarkup(lastLink, certificateLinks.length - 1, { isClone: true }) : '',
+    ...[...certificateLinks].map((link, index) => createSlideMarkup(link, index)),
+    firstLink ? createSlideMarkup(firstLink, 0, { isClone: true }) : '',
+  ].join('');
 
   certificateCarouselTrack.innerHTML = slidesMarkup;
 };
@@ -273,8 +285,8 @@ const buildCertificateCarousel = () => {
 const updateActiveCertificateSlide = () => {
   const slides = getCertificateCarouselSlides();
 
-  slides.forEach((slide, index) => {
-    const isActive = index === activeCertificateIndex;
+  slides.forEach((slide) => {
+    const isActive = Number(slide.dataset.certificateIndex) === activeCertificateIndex;
     slide.classList.toggle('is-active', isActive);
     slide.setAttribute('aria-current', isActive ? 'true' : 'false');
   });
@@ -284,10 +296,7 @@ const updateActiveCertificateSlide = () => {
   }
 };
 
-const scrollToCertificate = (index, { behavior = 'smooth' } = {}) => {
-  const slides = getCertificateCarouselSlides();
-  const targetSlide = slides[index];
-
+const scrollToSlide = (targetSlide, { behavior = 'smooth' } = {}) => {
   if (!certificateCarouselViewport || !targetSlide) return;
 
   const targetLeft =
@@ -300,8 +309,55 @@ const scrollToCertificate = (index, { behavior = 'smooth' } = {}) => {
   });
 };
 
-const updateActiveCertificateFromScroll = () => {
+const getSlideByIndex = (index, { clone = false } = {}) =>
+  getCertificateCarouselSlides().find(
+    (slide) =>
+      Number(slide.dataset.certificateIndex) === index &&
+      (slide.dataset.certificateClone === 'true') === clone
+  );
+
+const scrollToCertificate = (
+  index,
+  { behavior = 'smooth', useClone = false } = {}
+) => {
+  const targetSlide = getSlideByIndex(index, { clone: useClone });
+  scrollToSlide(targetSlide, { behavior });
+};
+
+const normalizeInfiniteCertificatePosition = () => {
   const slides = getCertificateCarouselSlides();
+
+  if (!certificateCarouselViewport || !slides.length) return;
+
+  const viewportCenter =
+    certificateCarouselViewport.scrollLeft +
+    certificateCarouselViewport.clientWidth / 2;
+
+  let nearestSlide = null;
+  let nearestDistance = Number.POSITIVE_INFINITY;
+
+  slides.forEach((slide) => {
+    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+    const distance = Math.abs(slideCenter - viewportCenter);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestSlide = slide;
+    }
+  });
+
+  if (!nearestSlide || nearestSlide.dataset.certificateClone !== 'true') return;
+
+  const realIndex = Number(nearestSlide.dataset.certificateIndex);
+  const realSlide = getSlideByIndex(realIndex, { clone: false });
+
+  if (realSlide) {
+    scrollToSlide(realSlide, { behavior: 'auto' });
+  }
+};
+
+const updateActiveCertificateFromScroll = () => {
+  const slides = getRealCertificateSlides();
 
   if (!certificateCarouselViewport || !slides.length) return;
 
@@ -357,9 +413,18 @@ const closeCertificateDetailModal = ({ restoreFocus = true } = {}) => {
 const showAdjacentCertificate = (direction) => {
   if (!certificateLinks.length || activeCertificateIndex < 0) return;
 
+  const previousIndex = activeCertificateIndex;
   activeCertificateIndex = wrapCertificateIndex(activeCertificateIndex + direction);
   updateActiveCertificateSlide();
-  scrollToCertificate(activeCertificateIndex);
+  scrollToCertificate(activeCertificateIndex, {
+    useClone:
+      (direction > 0 &&
+        previousIndex === certificateLinks.length - 1 &&
+        activeCertificateIndex === 0) ||
+      (direction < 0 &&
+        previousIndex === 0 &&
+        activeCertificateIndex === certificateLinks.length - 1),
+  });
   certificateDetailModal.returnFocusTo = certificateLinks[activeCertificateIndex];
 };
 
@@ -757,6 +822,7 @@ const initDeferredFeatures = () => {
       window.clearTimeout(certificateCarouselScrollTimer);
       certificateCarouselScrollTimer = window.setTimeout(() => {
         updateActiveCertificateFromScroll();
+        normalizeInfiniteCertificatePosition();
       }, 90);
     },
     { passive: true }
