@@ -428,7 +428,7 @@
               type="button"
               data-certificates-open
               aria-haspopup="dialog"
-              aria-controls="certifikaty-modal"
+              aria-controls="certifikat-detail-modal"
             >
               <img
                 src="certifikaty-nahled.png"
@@ -839,6 +839,11 @@
       >
         <h2 class="sr-only" id="certificate-detail-title">Detail certifikátu</h2>
         <div class="certificate-detail-toolbar">
+          <p class="certificate-detail-counter" aria-live="polite">
+            <span data-certificate-current>1</span>
+            <span aria-hidden="true">/</span>
+            <span data-certificate-total>7</span>
+          </p>
           <button
             class="story-modal-close certificate-detail-close"
             type="button"
@@ -858,46 +863,7 @@
             <span aria-hidden="true">‹</span>
           </button>
           <div class="certificate-carousel-viewport">
-            <div class="certificate-carousel-track">
-              <button
-                class="certificate-carousel-slide"
-                type="button"
-                data-certificate-slide="prev"
-                aria-label="Předchozí certifikát"
-              >
-                <img
-                  class="certificate-carousel-image"
-                  src=""
-                  alt=""
-                  decoding="async"
-                />
-              </button>
-              <div
-                class="certificate-carousel-slide"
-                data-certificate-slide="current"
-                aria-hidden="true"
-              >
-                <img
-                  class="certificate-carousel-image"
-                  src=""
-                  alt=""
-                  decoding="async"
-                />
-              </div>
-              <button
-                class="certificate-carousel-slide"
-                type="button"
-                data-certificate-slide="next"
-                aria-label="Další certifikát"
-              >
-                <img
-                  class="certificate-carousel-image"
-                  src=""
-                  alt=""
-                  decoding="async"
-                />
-              </button>
-            </div>
+            <div class="certificate-carousel-track"></div>
           </div>
           <button
             class="certificate-carousel-arrow certificate-carousel-arrow-next"

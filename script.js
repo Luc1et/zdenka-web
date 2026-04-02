@@ -24,24 +24,18 @@ const certificateDetailDialog =
   certificateDetailModal?.querySelector('.story-modal-dialog');
 const certificateDetailClose =
   certificateDetailModal?.querySelector('.story-modal-close');
+const certificateCarouselViewport =
+  certificateDetailModal?.querySelector('.certificate-carousel-viewport');
 const certificateCarouselTrack =
   certificateDetailModal?.querySelector('.certificate-carousel-track');
-const certificateCarouselPrev =
-  certificateDetailModal?.querySelector('[data-certificate-slide="prev"]');
-const certificateCarouselCurrent =
-  certificateDetailModal?.querySelector('[data-certificate-slide="current"]');
-const certificateCarouselNext =
-  certificateDetailModal?.querySelector('[data-certificate-slide="next"]');
-const certificateCarouselPrevImage =
-  certificateCarouselPrev?.querySelector('.certificate-carousel-image');
-const certificateCarouselCurrentImage =
-  certificateCarouselCurrent?.querySelector('.certificate-carousel-image');
-const certificateCarouselNextImage =
-  certificateCarouselNext?.querySelector('.certificate-carousel-image');
 const certificateDetailPrev =
   certificateDetailModal?.querySelector('[data-certificate-prev]');
 const certificateDetailNext =
   certificateDetailModal?.querySelector('[data-certificate-next]');
+const certificateDetailCurrent =
+  certificateDetailModal?.querySelector('[data-certificate-current]');
+const certificateDetailTotal =
+  certificateDetailModal?.querySelector('[data-certificate-total]');
 const certificateLinks = document.querySelectorAll('[data-certificate-detail]');
 const storyModal = document.getElementById('pribeh-modal');
 const storyModalDialog = storyModal?.querySelector('.story-modal-dialog');
@@ -67,8 +61,7 @@ let storyModalOpenedViaTrigger = false;
 let storyModalCanGoBack = false;
 let headerPointerReveal = false;
 let activeCertificateIndex = -1;
-let isCertificateCarouselAnimating = false;
-const CERTIFICATE_CAROUSEL_DURATION = 420;
+let certificateCarouselScrollTimer = 0;
 
 const getHeaderOffset = () => header?.getBoundingClientRect().height ?? 0;
 const isModalOpen = (modal) => modal?.classList.contains('is-open');
@@ -233,88 +226,141 @@ const closeCertificatesModal = ({ restoreFocus = true } = {}) => {
   closeModal(certificatesModal, { restoreFocus });
 };
 
+const openCertificatesPreview = (trigger = certificatesTrigger) => {
+  const firstCertificateLink = certificateLinks[0];
+
+  if (!firstCertificateLink) return;
+
+  openCertificateDetailModal(firstCertificateLink, trigger ?? firstCertificateLink);
+};
+
 const wrapCertificateIndex = (index) =>
   (index + certificateLinks.length) % certificateLinks.length;
 
-const setCertificateSlide = (imageElement, certificateIndex) => {
-  if (!imageElement || certificateIndex < 0) return;
+const getCertificateCarouselSlides = () =>
+  [...certificateCarouselTrack?.querySelectorAll('.certificate-carousel-slide') ?? []];
 
-  const certificateLink = certificateLinks[certificateIndex];
-  const sourceImage = certificateLink?.querySelector('img');
+const buildCertificateCarousel = () => {
+  if (!certificateCarouselTrack || certificateCarouselTrack.childElementCount) return;
 
-  if (!certificateLink || !sourceImage) return;
+  const slidesMarkup = [...certificateLinks]
+    .map((link, index) => {
+      const image = link.querySelector('img');
+      const src = link.getAttribute('href') ?? '';
+      const alt = image?.getAttribute('alt') ?? 'Certifikát';
 
-  imageElement.src = certificateLink.getAttribute('href') ?? '';
-  imageElement.alt = sourceImage.getAttribute('alt') ?? '';
+      return `
+        <button
+          class="certificate-carousel-slide"
+          type="button"
+          data-certificate-index="${index}"
+          aria-label="${alt}"
+        >
+          <img
+            class="certificate-carousel-image"
+            src="${src}"
+            alt="${alt}"
+            decoding="async"
+          />
+        </button>
+      `;
+    })
+    .join('');
+
+  certificateCarouselTrack.innerHTML = slidesMarkup;
 };
 
-const renderCertificateCarousel = () => {
-  if (
-    activeCertificateIndex < 0 ||
-    !certificateCarouselPrevImage ||
-    !certificateCarouselCurrentImage ||
-    !certificateCarouselNextImage
-  ) {
-    return;
+const updateActiveCertificateSlide = () => {
+  const slides = getCertificateCarouselSlides();
+
+  slides.forEach((slide, index) => {
+    const isActive = index === activeCertificateIndex;
+    slide.classList.toggle('is-active', isActive);
+    slide.setAttribute('aria-current', isActive ? 'true' : 'false');
+  });
+
+  if (certificateDetailCurrent) {
+    certificateDetailCurrent.textContent = String(activeCertificateIndex + 1);
   }
-
-  setCertificateSlide(
-    certificateCarouselPrevImage,
-    wrapCertificateIndex(activeCertificateIndex - 1)
-  );
-  setCertificateSlide(certificateCarouselCurrentImage, activeCertificateIndex);
-  setCertificateSlide(
-    certificateCarouselNextImage,
-    wrapCertificateIndex(activeCertificateIndex + 1)
-  );
-
-  certificateCarouselTrack?.classList.remove(
-    'is-sliding-next',
-    'is-sliding-prev'
-  );
 };
 
-const openCertificateDetailModal = (trigger) => {
+const scrollToCertificate = (index, { behavior = 'smooth' } = {}) => {
+  const slides = getCertificateCarouselSlides();
+  const targetSlide = slides[index];
+
+  if (!certificateCarouselViewport || !targetSlide) return;
+
+  const targetLeft =
+    targetSlide.offsetLeft -
+    (certificateCarouselViewport.clientWidth - targetSlide.offsetWidth) / 2;
+
+  certificateCarouselViewport.scrollTo({
+    left: Math.max(targetLeft, 0),
+    behavior,
+  });
+};
+
+const updateActiveCertificateFromScroll = () => {
+  const slides = getCertificateCarouselSlides();
+
+  if (!certificateCarouselViewport || !slides.length) return;
+
+  const viewportCenter =
+    certificateCarouselViewport.scrollLeft +
+    certificateCarouselViewport.clientWidth / 2;
+
+  let nearestIndex = activeCertificateIndex;
+  let nearestDistance = Number.POSITIVE_INFINITY;
+
+  slides.forEach((slide, index) => {
+    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+    const distance = Math.abs(slideCenter - viewportCenter);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  if (nearestIndex >= 0) {
+    activeCertificateIndex = nearestIndex;
+    updateActiveCertificateSlide();
+  }
+};
+
+const openCertificateDetailModal = (trigger, focusReturnTarget = trigger) => {
   if (!certificateCarouselTrack) return;
 
+  buildCertificateCarousel();
   activeCertificateIndex = [...certificateLinks].indexOf(trigger);
-  renderCertificateCarousel();
-  openModal(certificateDetailModal, trigger);
+  if (certificateDetailTotal) {
+    certificateDetailTotal.textContent = String(certificateLinks.length);
+  }
+  openModal(certificateDetailModal, focusReturnTarget);
+
+  window.requestAnimationFrame(() => {
+    updateActiveCertificateSlide();
+    scrollToCertificate(activeCertificateIndex, { behavior: 'auto' });
+  });
 };
 
 const closeCertificateDetailModal = ({ restoreFocus = true } = {}) => {
   closeModal(certificateDetailModal, { restoreFocus });
   activeCertificateIndex = -1;
-  isCertificateCarouselAnimating = false;
-  certificateCarouselTrack?.classList.remove('is-sliding-next', 'is-sliding-prev');
-  [certificateCarouselPrevImage, certificateCarouselCurrentImage, certificateCarouselNextImage].forEach((image) => {
-    if (!image) return;
-    image.src = '';
-    image.alt = '';
-  });
+  window.clearTimeout(certificateCarouselScrollTimer);
+
+  if (certificateDetailCurrent) {
+    certificateDetailCurrent.textContent = '1';
+  }
 };
 
 const showAdjacentCertificate = (direction) => {
-  if (
-    !certificateLinks.length ||
-    activeCertificateIndex < 0 ||
-    isCertificateCarouselAnimating ||
-    !certificateCarouselTrack
-  ) {
-    return;
-  }
+  if (!certificateLinks.length || activeCertificateIndex < 0) return;
 
-  isCertificateCarouselAnimating = true;
-  certificateCarouselTrack.classList.add(
-    direction > 0 ? 'is-sliding-next' : 'is-sliding-prev'
-  );
-
-  window.setTimeout(() => {
-    activeCertificateIndex = wrapCertificateIndex(activeCertificateIndex + direction);
-    renderCertificateCarousel();
-    certificateDetailModal.returnFocusTo = certificateLinks[activeCertificateIndex];
-    isCertificateCarouselAnimating = false;
-  }, CERTIFICATE_CAROUSEL_DURATION);
+  activeCertificateIndex = wrapCertificateIndex(activeCertificateIndex + direction);
+  updateActiveCertificateSlide();
+  scrollToCertificate(activeCertificateIndex);
+  certificateDetailModal.returnFocusTo = certificateLinks[activeCertificateIndex];
 };
 
 const requestStoryModalClose = () => {
@@ -646,7 +692,7 @@ const initDeferredFeatures = () => {
   }
 
   certificatesTrigger?.addEventListener('click', () => {
-    openCertificatesModal(certificatesTrigger);
+    openCertificatesPreview(certificatesTrigger);
   });
 
   certificatesModal?.addEventListener('click', (event) => {
@@ -692,13 +738,29 @@ const initDeferredFeatures = () => {
     showAdjacentCertificate(1);
   });
 
-  certificateCarouselPrev?.addEventListener('click', () => {
-    showAdjacentCertificate(-1);
+  certificateCarouselTrack?.addEventListener('click', (event) => {
+    const slide = event.target.closest('.certificate-carousel-slide');
+    const nextIndex = Number(slide?.dataset.certificateIndex);
+
+    if (!slide || Number.isNaN(nextIndex) || nextIndex === activeCertificateIndex) {
+      return;
+    }
+
+    activeCertificateIndex = nextIndex;
+    updateActiveCertificateSlide();
+    scrollToCertificate(activeCertificateIndex);
   });
 
-  certificateCarouselNext?.addEventListener('click', () => {
-    showAdjacentCertificate(1);
-  });
+  certificateCarouselViewport?.addEventListener(
+    'scroll',
+    () => {
+      window.clearTimeout(certificateCarouselScrollTimer);
+      certificateCarouselScrollTimer = window.setTimeout(() => {
+        updateActiveCertificateFromScroll();
+      }, 90);
+    },
+    { passive: true }
+  );
 
   certificateDetailDialog?.addEventListener('click', (event) => {
     event.stopPropagation();
