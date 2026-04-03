@@ -9,6 +9,7 @@ const tiltItem = document.querySelector('[data-tilt]');
 const moreServicesCta = document.querySelector('.services-more-link');
 const lessServicesCta = document.querySelector('.services-less-link');
 const servicesGrid = document.querySelector('.services-grid');
+const serviceCards = document.querySelectorAll('.service-card');
 const serviceBookingLinks = document.querySelectorAll(
   '#nabidka .service-footer a[href^="tel:"]'
 );
@@ -48,6 +49,7 @@ const desktopHeaderPointerMq = window.matchMedia(
   '(min-width: 1025px) and (hover: hover) and (pointer: fine)'
 );
 const desktopServicesContactMq = window.matchMedia('(min-width: 1025px)');
+const mobileServicesMq = window.matchMedia('(max-width: 640px)');
 const reducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)'
 ).matches;
@@ -664,6 +666,69 @@ const collapseMoreServices = () => {
   }
 };
 
+const setServiceCardExpanded = (card, expanded) => {
+  if (!card) return;
+
+  card.classList.toggle('is-open', expanded);
+  card.setAttribute('aria-expanded', String(expanded));
+  card
+    .querySelector('.service-card-toggle')
+    ?.replaceChildren(document.createTextNode(expanded ? '' : 'více'));
+};
+
+const syncMobileServiceCards = () => {
+  serviceCards.forEach((card) => {
+    const footer = card.querySelector('.service-footer');
+    let actions = card.querySelector('.service-card-actions');
+    let toggle = card.querySelector('.service-card-toggle');
+
+    if (mobileServicesMq.matches) {
+      if (!actions) {
+        actions = document.createElement('div');
+        actions.className = 'service-card-actions';
+        card.append(actions);
+      }
+
+      if (!toggle) {
+        toggle = document.createElement('button');
+        toggle.className = 'service-card-toggle';
+        toggle.type = 'button';
+        toggle.setAttribute('aria-hidden', 'true');
+        toggle.tabIndex = -1;
+        toggle.textContent = 'více';
+      }
+
+      if (toggle.parentElement !== actions) {
+        actions.append(toggle);
+      }
+
+      if (footer && footer.parentElement !== actions) {
+        actions.append(footer);
+      }
+
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+
+      if (!card.classList.contains('is-open')) {
+        card.setAttribute('aria-expanded', 'false');
+      }
+
+      return;
+    }
+
+    if (footer && actions?.parentElement === card) {
+      card.insertBefore(footer, actions);
+    }
+
+    actions?.remove();
+    toggle?.remove();
+    card.classList.remove('is-open');
+    card.removeAttribute('role');
+    card.removeAttribute('tabindex');
+    card.removeAttribute('aria-expanded');
+  });
+};
+
 const initDeferredFeatures = () => {
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -764,6 +829,44 @@ const initDeferredFeatures = () => {
       scrollToHashTarget('#sluzba-dalsi');
     });
   }
+
+  syncMobileServiceCards();
+
+  if ('addEventListener' in mobileServicesMq) {
+    mobileServicesMq.addEventListener('change', syncMobileServiceCards);
+  } else if ('addListener' in mobileServicesMq) {
+    mobileServicesMq.addListener(syncMobileServiceCards);
+  }
+
+  serviceCards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      if (!mobileServicesMq.matches) return;
+      if (event.target.closest('a')) return;
+
+      const willOpen = !card.classList.contains('is-open');
+
+      serviceCards.forEach((item) => {
+        if (item !== card) setServiceCardExpanded(item, false);
+      });
+
+      setServiceCardExpanded(card, willOpen);
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (!mobileServicesMq.matches) return;
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+
+      event.preventDefault();
+
+      const willOpen = !card.classList.contains('is-open');
+
+      serviceCards.forEach((item) => {
+        if (item !== card) setServiceCardExpanded(item, false);
+      });
+
+      setServiceCardExpanded(card, willOpen);
+    });
+  });
 
   certificatesTrigger?.addEventListener('click', () => {
     openCertificatesPreview(certificatesTrigger);
