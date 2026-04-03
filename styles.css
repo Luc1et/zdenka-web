@@ -1631,7 +1631,6 @@ main {
   overflow-y: hidden;
   width: 100%;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   scrollbar-width: none;
 }
 
