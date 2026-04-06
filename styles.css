@@ -2998,8 +2998,8 @@ main {
   }
 
   .service-card {
-    padding: 22px 20px 18px;
-    gap: 14px;
+    padding: 15px 18px 12px;
+    gap: 9px;
     cursor: pointer;
   }
 
@@ -3020,6 +3020,7 @@ main {
 
   .service-card h3 {
     font-size: 1.56rem;
+    line-height: 1.16;
   }
 
   .service-card p,
@@ -3048,9 +3049,8 @@ main {
     justify-content: flex-end;
     width: 100%;
     gap: 10px;
-    min-height: 26px;
     margin-top: auto;
-    padding-top: 6px;
+    padding-top: 4px;
     border-top: 1px solid var(--line);
   }
 
@@ -3058,7 +3058,6 @@ main {
     width: 0;
     max-width: 0;
     min-width: 0;
-    min-height: 30px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
@@ -3100,7 +3099,7 @@ main {
     justify-content: flex-end;
     margin-left: auto;
     gap: 6px;
-    padding: 0 0 4px;
+    padding: 0 0 2px;
     color: rgba(23, 58, 51, 0.58);
     background: transparent;
     border: 0;

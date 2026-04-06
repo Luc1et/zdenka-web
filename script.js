@@ -673,7 +673,7 @@ const setServiceCardExpanded = (card, expanded) => {
   card.setAttribute('aria-expanded', String(expanded));
   card
     .querySelector('.service-card-toggle')
-    ?.replaceChildren(document.createTextNode(expanded ? '' : 'více'));
+    ?.replaceChildren(document.createTextNode(expanded ? '' : 'Detail'));
 };
 
 const syncMobileServiceCards = () => {
@@ -695,7 +695,7 @@ const syncMobileServiceCards = () => {
         toggle.type = 'button';
         toggle.setAttribute('aria-hidden', 'true');
         toggle.tabIndex = -1;
-        toggle.textContent = 'více';
+        toggle.textContent = 'Detail';
       }
 
       if (toggle.parentElement !== actions) {
