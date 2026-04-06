@@ -3268,22 +3268,40 @@ main {
   }
 
   .certificate-detail-stage {
-    grid-template-columns: 40px minmax(0, 1fr) 40px;
-    gap: 8px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 
   .certificate-carousel-track {
-    gap: 10px;
-    padding-inline: 14px;
+    gap: 8px;
+    padding-inline: 6px;
   }
 
   .certificate-carousel-slide {
-    flex-basis: 78%;
+    flex-basis: 92%;
+    transform: scale(0.92);
   }
 
   .certificate-carousel-arrow {
-    width: 40px;
-    height: 40px;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    transform: translateY(-50%);
+  }
+
+  .certificate-carousel-arrow-prev {
+    left: 2px;
+  }
+
+  .certificate-carousel-arrow-next {
+    right: 2px;
+  }
+
+  .certificate-carousel-arrow:hover,
+  .certificate-carousel-arrow:focus-visible {
+    transform: translateY(-50%);
   }
 
   .brand img {
