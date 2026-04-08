@@ -2958,6 +2958,16 @@ main {
     transform: translateY(-8px);
   }
 
+  .contact-links-row {
+    white-space: nowrap;
+    font-size: 0.88rem;
+    letter-spacing: 0.01em;
+  }
+
+  .contact-links-row span {
+    padding-inline: 0.28rem;
+  }
+
   .hero {
     min-height: 100svh;
     align-items: flex-start;
