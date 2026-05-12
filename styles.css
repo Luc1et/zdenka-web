@@ -2275,6 +2275,12 @@ main {
   word-break: normal;
 }
 
+.contact-hero-email {
+  font-size: clamp(1.38rem, 1.9vw, 1.86rem);
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
 .contact-hero-item:active {
   transform: translateY(-1px);
 }
@@ -2972,6 +2978,10 @@ main {
     font-size: clamp(1.22rem, 6.8vw, 1.62rem);
   }
 
+  .contact-hero-email {
+    font-size: clamp(1.28rem, 4.8vw, 1.58rem);
+  }
+
   .contact-links-row {
     justify-content: center;
     gap: 0.15rem 0.45rem;
@@ -3012,6 +3022,10 @@ main {
     .contact-hero-value {
       font-size: clamp(1.12rem, 6vw, 1.42rem);
       line-height: 1.1;
+    }
+
+    .contact-hero-email {
+      font-size: clamp(1.04rem, 5.4vw, 1.28rem);
     }
 
     .contact-hero-label,
