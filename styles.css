@@ -1479,12 +1479,15 @@ main {
 }
 
 .story-modal-body p {
-  margin: 0;
+  max-width: 66ch;
+  margin: 0 auto;
   color: var(--muted);
   line-height: 1.92;
   font-size: clamp(1rem, 1.5vw, 1.08rem);
-  white-space: pre-line;
-  text-align: center;
+  white-space: normal;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
 }
 
 .story-modal-body p + p {
@@ -1492,7 +1495,7 @@ main {
 }
 
 .story-inline-visual {
-  margin: 20px auto;
+  margin: 38px auto;
   width: min(100%, 420px);
 }
 
@@ -1512,9 +1515,12 @@ main {
   text-align: center;
 }
 
-.story-modal-signoff {
+.story-modal-body .story-modal-signoff {
   color: var(--green);
   font-weight: 700;
+  text-align: right;
+  text-align-last: right;
+  padding-right: clamp(72px, 14vw, 144px);
 }
 
 .certificates-modal-dialog {
