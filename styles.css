@@ -2148,7 +2148,6 @@ main {
   gap: 0.2rem 0.55rem;
   margin: 0;
   padding-top: 16px;
-  border-top: 1px solid rgba(23, 58, 51, 0.1);
   text-align: center;
   color: rgba(23, 58, 51, 0.66);
   font-size: 0.92rem;
@@ -2224,8 +2223,8 @@ main {
     filter 0.22s ease;
 }
 
-.contact-hero-item:not(:last-of-type) {
-  border-right: 1px solid rgba(23, 58, 51, 0.08);
+.contact-hero-item > span {
+  min-width: 0;
 }
 
 .contact-hero-icon {
@@ -2272,6 +2271,8 @@ main {
   font-size: clamp(1.6rem, 2.1vw, 2.05rem);
   line-height: 1.06;
   color: var(--green);
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .contact-hero-item:active {
@@ -2313,7 +2314,7 @@ main {
   }
 }
 
-@media (min-width: 641px) and (max-width: 980px) {
+@media (min-width: 641px) and (max-width: 740px) {
   .contact-split {
     --contact-icon-size: clamp(82px, 10vw, 126px);
   }
@@ -2335,7 +2336,6 @@ main {
     padding: 14px 8px 16px;
     text-align: left;
     border-right: 0;
-    border-bottom: 1px solid rgba(23, 58, 51, 0.08);
   }
 
   .contact-hero-item:last-child {
@@ -2951,7 +2951,6 @@ main {
     padding: 12px 4px 14px;
     text-align: left;
     border-right: 0;
-    border-bottom: 1px solid rgba(23, 58, 51, 0.08);
   }
 
   .contact-hero-icon {
@@ -2970,7 +2969,7 @@ main {
   }
 
   .contact-hero-value {
-    font-size: clamp(1.42rem, 8vw, 1.72rem);
+    font-size: clamp(1.22rem, 6.8vw, 1.62rem);
   }
 
   .contact-links-row {
@@ -2984,6 +2983,41 @@ main {
 
   .contact-links-row span {
     padding-inline: 0;
+  }
+
+  @media (max-width: 380px) {
+    .contact-hero-card {
+      padding: 18px 14px;
+    }
+
+    .contact-hero-item {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 8px;
+      padding-inline: 0;
+      text-align: center;
+    }
+
+    .contact-hero-icon {
+      grid-row: auto;
+      width: 48px;
+      height: 48px;
+    }
+
+    .contact-hero-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+    }
+
+    .contact-hero-value {
+      font-size: clamp(1.12rem, 6vw, 1.42rem);
+      line-height: 1.1;
+    }
+
+    .contact-hero-label,
+    .contact-hero-value {
+      text-align: center;
+    }
   }
 
   .hero {
